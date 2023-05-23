@@ -2,7 +2,7 @@
   <div></div>
   <header>
     <RouterLink to="/temas">Temas</RouterLink>
-
+    
     <RouterLink to="/">
       <img
         alt="Vue logo"
@@ -12,8 +12,21 @@
         height="48"
     /></RouterLink>
 
-    <RouterLink to="/juego">Juego</RouterLink>
+    <div  v-if="count >= 0 && count < 26" > </div>
+    <RouterLink to="/juego" v-if="count >= 26 " >Quiz </RouterLink>
+    <!-- <RouterLink to="/juego" v-else >Quiz {{ count }} {{ isDisabled }} xd </RouterLink> -->
   </header>
 </template>
 
-<style></style>
+<script>
+
+
+export default  {
+  name: "MenuView",
+  props:['count']
+}
+</script>
+
+<style scoped>
+
+</style>
