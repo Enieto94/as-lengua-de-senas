@@ -1,11 +1,11 @@
 <template>
   <MenuAtrasTop></MenuAtrasTop>
     <main>
-        <h1>QUIZ ABECEDARIO ASL </h1>
+        <h1>QUIZ COLORES ASL </h1>
         <div v-if="!repaso">
             <h2>REPASO</h2>
             <center>
-                <video  src="https://apiasl.netlify.app/src/img/repaso/abecedario.mp4" autoplay="true"  muted></video>
+                <video  src="https://apiasl.netlify.app/src/img/repaso/colores.mp4" autoplay="true"  muted></video>
             </center>
 
             <center>
@@ -22,7 +22,9 @@
                     <progress id="file" max="100" :value="score*10" >  </progress>
                 </center>
                 <div class="quiz-info">
-                    <img class="question" :src="getCurrentQuestion.question">
+                    <center>
+                        <img class="question" :src="getCurrentQuestion.question">
+                    </center>
                     
                     <div>{{ value }}</div>
                 </div>
@@ -98,115 +100,138 @@ import MenuAtrasTop from "../components/MenuAtrasTop.vue";
 
   const questions = ref([
         {
-            question: "https://apiasl.netlify.app/src/img/abecedario/a.gif",
+            question: "https://apiasl.netlify.app/src/img/colores/amarillo.gif",
+            answer: 0,
+            options: [
+                'amarillo',
+                'azul',
+                'rojo',
+                'morado'
+            ],
+            selected: null
+        },
+        {
+            question: "https://apiasl.netlify.app/src/img/colores/azul_claro.gif",
+            answer: 1,
+            options: [
+                'morado',
+                'azul claro',
+                'rojo',
+                'azul'
+            ],
+            selected: null
+        },
+        {
+            question: "https://apiasl.netlify.app/src/img/colores/azul_oscuro.gif",
+            answer: 3,
+            options: [
+                'amarillo',
+                'azul',
+                'rojo',
+                'azul oscuro'
+            ],
+            selected: null
+        },
+        {
+            question: "https://apiasl.netlify.app/src/img/colores/azul.gif",
+            answer: 1,
+            options: [
+                'morado',
+                'azul',
+                'azul oscuro',
+                'amarillo'
+            ],
+            selected: null
+        },
+        {
+            question: "https://apiasl.netlify.app/src/img/colores/blanco.gif",
             answer: 2,
             options: [
-                'letra c',
-                'letra b',
-                'letra a',
-                'letra x'
+                'cafe',
+                'azul',
+                'blanco',
+                'amarillo'
             ],
             selected: null
         },
         {
-            question: "https://apiasl.netlify.app/src/img/abecedario/h.gif",
+            question: "https://apiasl.netlify.app/src/img/colores/cafe.gif",
             answer: 0,
             options: [
-                'letra h',
-                'letra z',
-                'letra n',
-                'letra o'
+                'cafe',
+                'azul',
+                'amarillo',
+                'blanco'
             ],
             selected: null
         },
         {
-            question: "https://apiasl.netlify.app/src/img/abecedario/h.gif",
-            answer: 0,
+            question: "https://apiasl.netlify.app/src/img/colores/morado.gif",
+            answer: 1,
             options: [
-                'letra h',
-                'letra z',
-                'letra n',
-                'letra o'
+                'azul',
+                'morado',
+                'amarillo',
+                'verde'
             ],
             selected: null
         },
         {
-            question: "https://apiasl.netlify.app/src/img/abecedario/h.gif",
-            answer: 0,
+            question: "https://apiasl.netlify.app/src/img/colores/naranja.gif",
+            answer: 2,
             options: [
-                'letra h',
-                'letra z',
-                'letra n',
-                'letra o'
+                'amarillo',
+                'azul',
+                'naranja',
+                'morado'
             ],
             selected: null
         },
         {
-            question: "https://apiasl.netlify.app/src/img/abecedario/h.gif",
-            answer: 0,
+            question: "https://apiasl.netlify.app/src/img/colores/negro.gif",
+            answer: 2,
             options: [
-                'letra h',
-                'letra z',
-                'letra n',
-                'letra o'
+                'gris',
+                'azul',
+                'negro',
+                'turquesa'
             ],
             selected: null
         },
         {
-            question: "https://apiasl.netlify.app/src/img/abecedario/h.gif",
-            answer: 0,
+            question: "https://apiasl.netlify.app/src/img/colores/rojo.gif",
+            answer: 2,
             options: [
-                'letra h',
-                'letra z',
-                'letra n',
-                'letra o'
+                'amarillo',
+                'azul',
+                'rojo',
+                'morado'
             ],
             selected: null
         },
         {
-            question: "https://apiasl.netlify.app/src/img/abecedario/h.gif",
-            answer: 0,
+            question: "https://apiasl.netlify.app/src/img/colores/rosado.gif",
+            answer: 2,
             options: [
-                'letra h',
-                'letra z',
-                'letra n',
-                'letra o'
+                'amarillo',
+                'azul',
+                'rosado',
+                'morado'
             ],
             selected: null
         },
         {
-            question: "https://apiasl.netlify.app/src/img/abecedario/h.gif",
+            question: "https://apiasl.netlify.app/src/img/colores/verde.gif",
             answer: 0,
             options: [
-                'letra h',
-                'letra z',
-                'letra n',
-                'letra o'
+                'verde',
+                'gris',
+                'amarillo',
+                'fuxia'
             ],
             selected: null
         },
-        {
-            question: "https://apiasl.netlify.app/src/img/abecedario/h.gif",
-            answer: 0,
-            options: [
-                'letra h',
-                'letra z',
-                'letra n',
-                'letra o'
-            ],
-            selected: null
-        },
-        {
-            question: "https://apiasl.netlify.app/src/img/abecedario/h.gif",
-            answer: 0,
-            options: [
-                'letra h',
-                'letra z',
-                'letra n',
-                'letra o'
-            ],
-            selected: null
-        },
+     
 
     ])
     const quizCompleted = ref(false);

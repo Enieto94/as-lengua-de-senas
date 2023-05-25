@@ -61,7 +61,7 @@ export default {
       store.dispatch("getCharacters");
     });
     return {
-      characters,
+      characters
     };
   },
   data() {

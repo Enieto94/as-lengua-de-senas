@@ -26,6 +26,22 @@ const router = createRouter({
 			component: () => import('../views/QuizView.vue')
 		},
 		{
+			path: '/quiznumeros',
+			name: 'quiznumeros',
+			// route level code-splitting
+			// this generates a separate chunk (About.[hash].js) for this route
+			// which is lazy-loaded when the route is visited.
+			component: () => import('../views/QuizNumeros.vue')
+		},
+		{
+			path: '/quizcolores',
+			name: 'quizcolores',
+			// route level code-splitting
+			// this generates a separate chunk (About.[hash].js) for this route
+			// which is lazy-loaded when the route is visited.
+			component: () => import('../views/QuizColores.vue')
+		},
+		{
 			path: '/temas',
 			name: 'temas',
 			// route level code-splitting

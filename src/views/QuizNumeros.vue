@@ -1,11 +1,11 @@
 <template>
   <MenuAtrasTop></MenuAtrasTop>
     <main>
-        <h1>QUIZ ABECEDARIO ASL </h1>
+        <h1>QUIZ NUMEROS ASL </h1>
         <div v-if="!repaso">
             <h2>REPASO</h2>
             <center>
-                <video  src="https://apiasl.netlify.app/src/img/repaso/abecedario.mp4" autoplay="true"  muted></video>
+                <video  src="https://apiasl.netlify.app/src/img/repaso/numeros.mp4" autoplay="true"  muted></video>
             </center>
 
             <center>
@@ -22,7 +22,7 @@
                     <progress id="file" max="100" :value="score*10" >  </progress>
                 </center>
                 <div class="quiz-info">
-                    <img class="question" :src="getCurrentQuestion.question">
+                    <center><img class="question" :src="getCurrentQuestion.question"></center>
                     
                     <div>{{ value }}</div>
                 </div>
@@ -69,7 +69,7 @@
                     </span>
 
                 </p>
-                <div v-if="score>7">
+                <div v-if="score>7"> <br><br>
                     <h4>¡LO LOGRASTE! FELICIDADES</h4> <br><br>
                     <img  src="https://cdn.dribbble.com/users/1884546/screenshots/4969286/media/328f91c38b48d3d9904737088774df96.gif" alt="">
                 </div>
@@ -98,112 +98,103 @@ import MenuAtrasTop from "../components/MenuAtrasTop.vue";
 
   const questions = ref([
         {
-            question: "https://apiasl.netlify.app/src/img/abecedario/a.gif",
+            question: "https://apiasl.netlify.app/src/img/numeros/numero_01.gif",
+            answer: 3,
+            options: [
+                'numero 4',
+                'numero 2',
+                'numero 3',
+                'numero 1'
+            ],
+            selected: null
+        },
+        {
+            question: "https://apiasl.netlify.app/src/img/numeros/numero_02.gif",
+            answer: 1,
+            options: [
+                'numero 9',
+                'numero 2',
+                'numero 3',
+                'numero 5'
+            ],
+            selected: null
+        },
+        {
+            question: "https://apiasl.netlify.app/src/img/numeros/numero_03.gif",
             answer: 2,
             options: [
-                'letra c',
-                'letra b',
-                'letra a',
-                'letra x'
+                'numero 2',
+                'numero 8',
+                'numero 3',
+                'numero 6'
             ],
             selected: null
         },
         {
-            question: "https://apiasl.netlify.app/src/img/abecedario/h.gif",
-            answer: 0,
+            question: "https://apiasl.netlify.app/src/img/numeros/numero_04.gif",
+            answer: 3,
             options: [
-                'letra h',
-                'letra z',
-                'letra n',
-                'letra o'
+                'numero 1',
+                'numero 9',
+                'numero 3',
+                'numero 4'
             ],
             selected: null
         },
         {
-            question: "https://apiasl.netlify.app/src/img/abecedario/h.gif",
-            answer: 0,
+            question: "https://apiasl.netlify.app/src/img/numeros/numero_05.gif",
+            answer: 3,
             options: [
-                'letra h',
-                'letra z',
-                'letra n',
-                'letra o'
+                'numero 2',
+                'numero 4',
+                'numero 9',
+                'numero 5'
+                
             ],
             selected: null
         },
         {
-            question: "https://apiasl.netlify.app/src/img/abecedario/h.gif",
-            answer: 0,
+            question: "https://apiasl.netlify.app/src/img/numeros/numero_06.gif",
+            answer: 3,
             options: [
-                'letra h',
-                'letra z',
-                'letra n',
-                'letra o'
+                'numero 8',
+                'numero 7',
+                'numero 1',
+                'numero 6'
+                
             ],
             selected: null
         },
         {
-            question: "https://apiasl.netlify.app/src/img/abecedario/h.gif",
-            answer: 0,
+            question: "https://apiasl.netlify.app/src/img/numeros/numero_07.gif",
+            answer: 1,
             options: [
-                'letra h',
-                'letra z',
-                'letra n',
-                'letra o'
+                'numero 2',
+                'numero 7',
+                'numero 9',
+                'numero 3'
             ],
             selected: null
         },
         {
-            question: "https://apiasl.netlify.app/src/img/abecedario/h.gif",
-            answer: 0,
+            question: "https://apiasl.netlify.app/src/img/numeros/numero_08.gif",
+            answer: 3,
             options: [
-                'letra h',
-                'letra z',
-                'letra n',
-                'letra o'
+                'numero 9',
+                'numero 7',
+                'numero 1',
+                'numero 8'
             ],
             selected: null
         },
         {
-            question: "https://apiasl.netlify.app/src/img/abecedario/h.gif",
-            answer: 0,
+            question: "https://apiasl.netlify.app/src/img/numeros/numero_09.gif",
+            answer: 2,
             options: [
-                'letra h',
-                'letra z',
-                'letra n',
-                'letra o'
-            ],
-            selected: null
-        },
-        {
-            question: "https://apiasl.netlify.app/src/img/abecedario/h.gif",
-            answer: 0,
-            options: [
-                'letra h',
-                'letra z',
-                'letra n',
-                'letra o'
-            ],
-            selected: null
-        },
-        {
-            question: "https://apiasl.netlify.app/src/img/abecedario/h.gif",
-            answer: 0,
-            options: [
-                'letra h',
-                'letra z',
-                'letra n',
-                'letra o'
-            ],
-            selected: null
-        },
-        {
-            question: "https://apiasl.netlify.app/src/img/abecedario/h.gif",
-            answer: 0,
-            options: [
-                'letra h',
-                'letra z',
-                'letra n',
-                'letra o'
+                'numero 2',
+                'numero 7',
+                'numero 9',
+                'numero 3'
             ],
             selected: null
         },
