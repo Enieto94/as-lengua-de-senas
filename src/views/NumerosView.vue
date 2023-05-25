@@ -1,5 +1,5 @@
 <template>
-  <MenuAtrasTop :currentColor="currentColor"></MenuAtrasTop>
+  <MenuAtrasTop :currentColor="currentColor" :modulo="modulo"></MenuAtrasTop>
   <main>
     <FilterByName></FilterByName>
     
@@ -37,7 +37,7 @@
       <img src="" alt="" id="imgshow">
   </main>
 
-  <MenuView :count="count"></MenuView>
+  <MenuView :count="count" :modulo="modulo"></MenuView>
 </template>
 
 <script>
@@ -70,7 +70,9 @@ export default {
 
     return {
       count: 0,
-      currentColor: 'fff'
+      currentColor: 'fff',
+      modulo: 'NUMEROS'
+
     }
   },
   methods: {
@@ -94,7 +96,7 @@ export default {
       store.dispatch("getNumbers");
       this.count++;
    
-      if(this.count >= 10){
+      if(this.count >= 9){
         // alert('completado ')
         this.currentColor = '00CD56'
       }
@@ -121,7 +123,9 @@ export default {
 main {
   background: var(--vt-c-naranja);
 }
-
+#imgshow {
+  width: 300px;
+}
 .letters-c {
   width: 70%;
   margin: 20px auto;

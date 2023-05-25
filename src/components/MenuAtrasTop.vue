@@ -1,6 +1,7 @@
 <template>
   <nav>
-    <router-link to="/temas"><button>Atrás</button></router-link>
+    <router-link to="/temas"><h4 style="color: #fff;">Atrás</h4></router-link>
+      <h2>{{ modulo }}</h2>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
         <title>check-decagram</title>
         <path :style="{fill: '#'+currentColor+' !important'}"
@@ -14,7 +15,7 @@
 <script>
 export default {
   name: "MenuAtrasTop",
-  props: ['currentColor']
+  props: ['currentColor','modulo']
 };
 </script>
 

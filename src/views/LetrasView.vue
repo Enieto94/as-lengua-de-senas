@@ -1,8 +1,8 @@
 <template>
-  <MenuAtrasTop :currentColor="currentColor"></MenuAtrasTop>
+  <MenuAtrasTop :currentColor="currentColor" :modulo="modulo"></MenuAtrasTop>
   <main>
     <FilterByName></FilterByName>
-    
+
     <div class="letters-c">
       <div v-for="character in characters" :key="character.id">
         <!-- <img :src="character.url_src" alt=""> -->
@@ -37,7 +37,7 @@
      <img src="" alt="" id="imgshow" >
   </main>
 
-  <MenuView :count="count"></MenuView>
+  <MenuView :count="count" :modulo="modulo"></MenuView>
 </template>
 
 <script>
@@ -69,6 +69,7 @@ export default {
     return {
       count: 0,
       currentColor: 'ffffff00',
+      modulo: 'ABC'
     }
   },
   methods: {
