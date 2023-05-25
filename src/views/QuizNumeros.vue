@@ -78,7 +78,7 @@
                     <h4>Lo lamentamos, ¡Sigue estudiando!</h4>
                     <br><br>
                     <img  src="https://media.tenor.com/IwSe7sBQluoAAAAC/perdimos-derrota.gif" alt="">
-                    <RouterLink to="/letras">
+                    <RouterLink to="/numeros">
                     <button>Vuelve a repasar</button></RouterLink>
                 </div>
             

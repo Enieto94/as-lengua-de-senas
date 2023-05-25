@@ -20,6 +20,7 @@
             <section class="quiz" v-if="!quizCompleted">
                 <center>
                     <progress id="file" max="100" :value="score*10" >  </progress>
+                    <div v-if="showColor">Respuesta color <div :style="'background: '+getCurrentQuestion.hex+';width: 20px; height: 20px; border: solid 1px #000;margin-bottom:10px;'"></div></div>
                 </center>
                 <div class="quiz-info">
                     <center>
@@ -80,7 +81,7 @@
                     <h4>Lo lamentamos, ¡Sigue estudiando!</h4>
                     <br><br>
                     <img  src="https://media.tenor.com/IwSe7sBQluoAAAAC/perdimos-derrota.gif" alt="">
-                    <RouterLink to="/letras">
+                    <RouterLink to="/colores">
                     <button>Vuelve a repasar</button></RouterLink>
                 </div>
             
@@ -102,6 +103,7 @@ import MenuAtrasTop from "../components/MenuAtrasTop.vue";
         {
             question: "https://apiasl.netlify.app/src/img/colores/amarillo.gif",
             answer: 0,
+            hex: '#FFFF00',
             options: [
                 'amarillo',
                 'azul',
@@ -113,6 +115,7 @@ import MenuAtrasTop from "../components/MenuAtrasTop.vue";
         {
             question: "https://apiasl.netlify.app/src/img/colores/azul_claro.gif",
             answer: 1,
+            hex: '#00BFFF',
             options: [
                 'morado',
                 'azul claro',
@@ -124,6 +127,7 @@ import MenuAtrasTop from "../components/MenuAtrasTop.vue";
         {
             question: "https://apiasl.netlify.app/src/img/colores/azul_oscuro.gif",
             answer: 3,
+            hex: '#00008B',
             options: [
                 'amarillo',
                 'azul',
@@ -135,6 +139,7 @@ import MenuAtrasTop from "../components/MenuAtrasTop.vue";
         {
             question: "https://apiasl.netlify.app/src/img/colores/azul.gif",
             answer: 1,
+            hex: '#0000FF',
             options: [
                 'morado',
                 'azul',
@@ -146,6 +151,7 @@ import MenuAtrasTop from "../components/MenuAtrasTop.vue";
         {
             question: "https://apiasl.netlify.app/src/img/colores/blanco.gif",
             answer: 2,
+            hex: '#fff',
             options: [
                 'cafe',
                 'azul',
@@ -157,6 +163,7 @@ import MenuAtrasTop from "../components/MenuAtrasTop.vue";
         {
             question: "https://apiasl.netlify.app/src/img/colores/cafe.gif",
             answer: 0,
+            hex: '#A52A2A',
             options: [
                 'cafe',
                 'azul',
@@ -168,6 +175,7 @@ import MenuAtrasTop from "../components/MenuAtrasTop.vue";
         {
             question: "https://apiasl.netlify.app/src/img/colores/morado.gif",
             answer: 1,
+            hex: '#800080',
             options: [
                 'azul',
                 'morado',
@@ -179,6 +187,7 @@ import MenuAtrasTop from "../components/MenuAtrasTop.vue";
         {
             question: "https://apiasl.netlify.app/src/img/colores/naranja.gif",
             answer: 2,
+            hex: '#FFA500',
             options: [
                 'amarillo',
                 'azul',
@@ -190,6 +199,7 @@ import MenuAtrasTop from "../components/MenuAtrasTop.vue";
         {
             question: "https://apiasl.netlify.app/src/img/colores/negro.gif",
             answer: 2,
+            hex: '#000000',
             options: [
                 'gris',
                 'azul',
@@ -201,6 +211,7 @@ import MenuAtrasTop from "../components/MenuAtrasTop.vue";
         {
             question: "https://apiasl.netlify.app/src/img/colores/rojo.gif",
             answer: 2,
+            hex: '#FF0000',
             options: [
                 'amarillo',
                 'azul',
@@ -212,6 +223,7 @@ import MenuAtrasTop from "../components/MenuAtrasTop.vue";
         {
             question: "https://apiasl.netlify.app/src/img/colores/rosado.gif",
             answer: 2,
+            hex: '#FFC0CB',
             options: [
                 'amarillo',
                 'azul',
@@ -223,6 +235,7 @@ import MenuAtrasTop from "../components/MenuAtrasTop.vue";
         {
             question: "https://apiasl.netlify.app/src/img/colores/verde.gif",
             answer: 0,
+            hex: '#008000',
             options: [
                 'verde',
                 'gris',
@@ -235,6 +248,7 @@ import MenuAtrasTop from "../components/MenuAtrasTop.vue";
 
     ])
     const quizCompleted = ref(false);
+    let showColor = ref(false);
     const currentQuestion =  ref(0);
     const repaso =ref(false);
     const score = computed(() => {
@@ -257,11 +271,13 @@ import MenuAtrasTop from "../components/MenuAtrasTop.vue";
     const SetAnswer = e => {
         questions.value[currentQuestion.value].selected = e.target.value
         e.target.value = null
+        showColor = true
     }
     
     const NextQuestion = () => {
         if(currentQuestion.value < questions.value.length -1){
             currentQuestion.value++
+            showColor = false
             return
         }
         quizCompleted.value = true
