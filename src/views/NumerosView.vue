@@ -1,5 +1,5 @@
 <template>
-  <MenuAtrasTop></MenuAtrasTop>
+  <MenuAtrasTop :currentColor="currentColor"></MenuAtrasTop>
   <main>
     <FilterByName></FilterByName>
     
@@ -7,7 +7,7 @@
       <div :class="
       character.visto == false ? 'letter-item' :
       character.visto == true ? 'letter-item active':
-      'letter-item'"   v-for="character in characters" :key="character.id" @click="mostrarImg(character.url_src,character.id)" >
+      'letter-item'"   v-for="character in characters" :key="character.id" @click="mostrarImg(character.url_src,character.id,character.visto)" >
         <!-- <img :src="character.url_src" alt=""> -->
         
           <span>{{ character.nom_letra }}</span>
@@ -34,12 +34,10 @@
       
       </div>
     </div>
-    <div>
       <img src="" alt="" id="imgshow">
-    </div>
   </main>
 
-  <MenuView></MenuView>
+  <MenuView :count="count"></MenuView>
 </template>
 
 <script>
@@ -49,6 +47,8 @@ import { useStore } from "vuex";
 import MenuAtrasTop from "../components/MenuAtrasTop.vue";
 import FilterByName from "../components/FilterByName.vue";
 import MenuView from "../views/MenuView.vue";
+import store from "@/store";
+
 // import TemaComponent from "../components/TemaComponent.vue";
 
 export default {
@@ -57,7 +57,6 @@ export default {
   setup() {
     const store = useStore();
     const characters = computed(() => {
-    
       return store.state.charactersFilter;
     });
     onMounted(() => {
@@ -67,13 +66,20 @@ export default {
       characters,
     };
   },
+  data() {
+
+    return {
+      count: 0,
+      currentColor: 'fff'
+    }
+  },
   methods: {
-    mostrarImg(url_src, id) {
+    mostrarImg(url_src, id, visto) {
       document.getElementById('imgshow').src=url_src
       
       const data = {
-        "visto": true
-      };
+        "visto": !visto
+      }; 
 
       fetch('http://127.0.0.1:8000/api/updatenumero/'+id, {
         method: 'PUT',
@@ -85,6 +91,23 @@ export default {
       .then(response => response.json())
       .then(data => console.log(data))
       .catch(error => console.error(error));
+      store.dispatch("getNumbers");
+      this.count++;
+   
+      if(this.count >= 10){
+        // alert('completado ')
+        this.currentColor = '00CD56'
+      }
+      if(this.count > 4 && this.count < 10){
+        // alert('mayor a 14 y menor a 20')
+        this.currentColor = 'F4EB49'
+      }
+      if(this.count < 4){
+        // alert('no ha terminado')
+        this.currentColor = 'F1191C'
+      }
+      document.getElementById('imgshow').src=url_src;
+
 
           
     }

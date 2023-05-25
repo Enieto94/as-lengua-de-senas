@@ -68,10 +68,11 @@ export default {
 
     return {
       count: 0,
-      currentColor: 'fff'
+      currentColor: 'ffffff00',
     }
   },
   methods: {
+
     mostrarImg(url_src, id, visto) {
       // let vistos = document.getElementsByClassName('active').length
       // alert(vistos)

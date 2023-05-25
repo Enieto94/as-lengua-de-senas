@@ -12,8 +12,10 @@
         height="48"
     /></RouterLink>
 
-    <div  v-if="count >= 0 && count < 26" > </div>
-    <RouterLink to="/juego" v-if="count >= 26 " >Quiz </RouterLink>
+    
+
+    <a href="#" v-if="count<26">Quiz </a>
+    <RouterLink to="/quiz" v-if="count >= 26 " >Quiz </RouterLink>
     <!-- <RouterLink to="/juego" v-else >Quiz {{ count }} {{ isDisabled }} xd </RouterLink> -->
   </header>
 </template>
@@ -23,7 +25,7 @@
 
 export default  {
   name: "MenuView",
-  props:['count']
+  props:['count','score']
 }
 </script>
 
