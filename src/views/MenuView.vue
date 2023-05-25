@@ -12,9 +12,9 @@
         height="48"
     /></RouterLink>
 
-    <RouterLink to="/quiz" v-if="count >= 26 && modulo == 'abecedario'" >Quiz </RouterLink>
-    <RouterLink to="/quiznumeros" v-if="count >= 9 && modulo == 'numeros'" >Quiz </RouterLink>
-    <RouterLink to="/quizcolores" v-if="count >= 14 && modulo == 'colores'" >Quiz </RouterLink>
+    <RouterLink to="/quiz" v-if="count >= 26 && modulo == 'ABC'" >Quiz </RouterLink>
+    <RouterLink to="/quiznumeros" v-if="count >= 9 && modulo == 'NUMEROS'" >Quiz </RouterLink>
+    <RouterLink to="/quizcolores" v-if="count >= 14 && modulo == 'COLORES'" >Quiz </RouterLink>
     <!-- <RouterLink to="/juego" v-else >Quiz {{ count }} {{ isDisabled }} xd </RouterLink> -->
   </header>
 </template>

@@ -1,18 +1,18 @@
 <template>
   <MenuAtrasTop :currentColor="currentColor" :modulo="modulo"></MenuAtrasTop>
   <main>
-    <FilterByName></FilterByName>
+    <FilterByColor></FilterByColor>
     
     <div class="letters-c">
       <div :class="
-      character.visto == false ? 'letter-item' :
-      character.visto == true ? 'letter-item active':
-      'letter-item'"   v-for="character in characters" :key="character.id" @click="mostrarImg(character.url_src,character.id,character.visto)" >
+      color.visto == false ? 'letter-item' :
+      color.visto == true ? 'letter-item active':
+      'letter-item'"   v-for="color in colors" :key="color.id" @click="mostrarImg(color.url_src,color.id,color.visto)" >
         <!-- <img :src="character.url_src" alt=""> -->
         
-          <span :style="'background-color:'+character.hex+'; width: 30px; height: 30px;border: solid 1px #000;'"></span><span style="text-transform: uppercase">{{ character.nom_color }} </span>
+          <span :style="'background-color:'+color.hex+'; width: 30px; height: 30px;border: solid 1px #000;'"></span><span style="text-transform: uppercase">{{ color.nom_color }} </span>
 
-          <div v-if="character.visto">
+          <div v-if="color.visto">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <title>eye</title>
               <path
@@ -45,7 +45,7 @@
 import { onMounted, computed } from "vue";
 import { useStore } from "vuex";
 import MenuAtrasTop from "../components/MenuAtrasTop.vue";
-import FilterByName from "../components/FilterByName.vue";
+import FilterByColor from "../components/FilterByColor.vue";
 import MenuView from "../views/MenuView.vue";
 import store from "@/store";
 
@@ -53,17 +53,17 @@ import store from "@/store";
 
 export default {
   name: "ColoresView",
-  components: { MenuAtrasTop, MenuView,FilterByName },
+  components: { MenuAtrasTop, MenuView,FilterByColor },
   setup() {
     const store = useStore();
-    const characters = computed(() => {
-      return store.state.charactersFilter;
+    const colors = computed(() => {
+      return store.state.colorsFilter;
     });
     onMounted(() => {
       store.dispatch("getColores");
     });
     return {
-      characters,
+      colors,
     };
   },
   data() {
@@ -109,8 +109,6 @@ export default {
       }
       document.getElementById('imgshow').src=url_src;
 
-
-          
     }
   }
 };

@@ -8,6 +8,8 @@ export default createStore({
 	state: {
 		characters: [],
 		charactersFilter: [],
+		colors: [],
+		colorsFilter: [],
 		setTrue: Boolean
 	},
 	mutations: {
@@ -16,10 +18,28 @@ export default createStore({
 		},
 		setCharactersFilter(state, payload) {
 			state.charactersFilter = payload
+		},
+		setColors(state, payload) {
+			state.colors = payload
+		},
+		setColorsFilter(state, payload) {
+			state.colorsFilter = payload
 		}
 
 	},
 	actions: {
+		async getColores({ commit }) {
+			try {
+				const response = await fetch('http://127.0.0.1:8000/api/colores')
+				const data = await response.json()
+				commit('setColors', data)
+				commit('setColorsFilter', data)
+				console.log(data)
+			} catch (error) {
+				console.log(error)
+			}
+
+		},
 		async getCharacters({ commit }) {
 			try {
 				const response = await fetch('http://127.0.0.1:8000/api/temas')
@@ -55,6 +75,18 @@ export default createStore({
 			})
 
 			commit('setCharactersFilter', results)
+		},
+		filterByColor({ commit, state }, name) {
+			const formatName = name.toLowerCase()
+			const results = state.colors.filter((color) => {
+				const colorName = color.nom_color.toLowerCase()
+
+				if (colorName.includes(formatName)) {
+					return color
+				}
+			})
+
+			commit('setColorsFilter', results)
 		}
 	},
 	modules: {
