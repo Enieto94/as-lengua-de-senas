@@ -11,6 +11,7 @@ export default createStore({
 		colorsFilter: [],
 		presentaciones: [],
 		verbos: [],
+		preguntasFilter: [],
 		preguntas: [],
 		setTrue: Boolean
 	},
@@ -22,7 +23,10 @@ export default createStore({
 			state.characters = payload
 		},
 		setPreguntas(state, payload) {
-			state.characters = payload
+			state.preguntas = payload
+		},
+		setPreguntasFilter(state, payload) {
+			state.preguntasFilter = payload
 		},
 		setVerbos(state, payload) {
 			state.characters = payload
@@ -80,7 +84,7 @@ export default createStore({
 				const response = await fetch('http://127.0.0.1:8000/api/pregunta')
 				const data = await response.json()
 				commit('setPreguntas', data)
-				// commit('setCharactersFilter', data)
+				commit('setPreguntasFilter', data)
 				console.log(data)
 			} catch (error) {
 				console.log(error)
@@ -92,7 +96,7 @@ export default createStore({
 				const response = await fetch('http://127.0.0.1:8000/api/presentacion')
 				const data = await response.json()
 				commit('setPresentaciones', data)
-				// commit('setCharactersFilter', data)
+				commit('setCharactersFilter', data)
 				console.log(data)
 			} catch (error) {
 				console.log(error)
@@ -104,7 +108,7 @@ export default createStore({
 				const response = await fetch('http://127.0.0.1:8000/api/verbo')
 				const data = await response.json()
 				commit('setVerbos', data)
-				// commit('setCharactersFilter', data)
+				commit('setCharactersFilter', data)
 				console.log(data)
 			} catch (error) {
 				console.log(error)
