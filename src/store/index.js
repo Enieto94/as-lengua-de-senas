@@ -10,9 +10,10 @@ export default createStore({
 		colors: [],
 		colorsFilter: [],
 		presentaciones: [],
+		presentacionesFilter: [],
 		verbos: [],
-		preguntasFilter: [],
 		preguntas: [],
+		preguntasFilter: [],
 		setTrue: Boolean
 	},
 	mutations: {
@@ -23,11 +24,9 @@ export default createStore({
 			state.characters = payload
 		},
 		setPreguntas(state, payload) {
-			state.preguntas = payload
+			state.characters = payload
 		},
-		setPreguntasFilter(state, payload) {
-			state.preguntasFilter = payload
-		},
+
 		setVerbos(state, payload) {
 			state.characters = payload
 		},
@@ -39,7 +38,13 @@ export default createStore({
 		},
 		setColorsFilter(state, payload) {
 			state.colorsFilter = payload
-		}
+		},
+		setPreguntasFilter(state, payload) {
+			state.charactersFilter = payload
+		},
+		setPresentacionesFilter(state, payload) {
+			state.charactersFilter = payload
+		},
 
 	},
 	actions: {
@@ -96,7 +101,7 @@ export default createStore({
 				const response = await fetch('http://127.0.0.1:8000/api/presentacion')
 				const data = await response.json()
 				commit('setPresentaciones', data)
-				commit('setCharactersFilter', data)
+				commit('setPresentacionesFilter', data)
 				console.log(data)
 			} catch (error) {
 				console.log(error)

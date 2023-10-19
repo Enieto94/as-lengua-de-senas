@@ -42,6 +42,30 @@ const router = createRouter({
 			component: () => import('../views/QuizColores.vue')
 		},
 		{
+			path: '/quizpreguntas',
+			name: 'quizpreguntas',
+			// route level code-splitting
+			// this generates a separate chunk (About.[hash].js) for this route
+			// which is lazy-loaded when the route is visited.
+			component: () => import('../views/QuizPreguntas.vue')
+		},
+		{
+			path: '/quizpresentaciones',
+			name: 'quizpresentaciones',
+			// route level code-splitting
+			// this generates a separate chunk (About.[hash].js) for this route
+			// which is lazy-loaded when the route is visited.
+			component: () => import('../views/QuizPresentaciones.vue')
+		},
+		{
+			path: '/quizverbos',
+			name: 'quizverbos',
+			// route level code-splitting
+			// this generates a separate chunk (About.[hash].js) for this route
+			// which is lazy-loaded when the route is visited.
+			component: () => import('../views/QuizVerbos.vue')
+		},
+		{
 			path: '/temas',
 			name: 'temas',
 			// route level code-splitting
@@ -81,6 +105,24 @@ const router = createRouter({
 			// this generates a separate chunk (About.[hash].js) for this route
 			// which is lazy-loaded when the route is visited.
 			component: () => import('../views/PreguntasView.vue')
+		}
+		,
+		{
+			path: '/presentacion',
+			name: 'presentacion',
+			// route level code-splitting
+			// this generates a separate chunk (About.[hash].js) for this route
+			// which is lazy-loaded when the route is visited.
+			component: () => import('../views/PresentacionView.vue')
+		}
+		,
+		{
+			path: '/verbos',
+			name: 'verbos',
+			// route level code-splitting
+			// this generates a separate chunk (About.[hash].js) for this route
+			// which is lazy-loaded when the route is visited.
+			component: () => import('../views/VerbosView.vue')
 		}
 	]
 })

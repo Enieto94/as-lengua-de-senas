@@ -5,9 +5,6 @@
   </nav>
 
   <div class="name" >Nombre {{ msg }}</div>
-    <div class="score">
-      Niveles: 1/3
-    </div>
   <main>
     <div class="tema-c">
       <div class="info-c">
@@ -39,7 +36,8 @@
     
     <!-- <button @click="toggleClass">Cambiar Clase</button> -->
 
-    <div class="tema-c" v-bind:class="{locked: isActive}">
+    <!-- <div class="tema-c" v-bind:class="{locked: isActive}"> -->
+    <div class="tema-c">
       <div class="info-c">
         <img src="@/assets/img/info.png" alt="" />
         <div>
@@ -47,19 +45,19 @@
           <h4>Vocabulario Intermedio</h4>
         </div>
       </div>
-      <router-link to="presenteacionPersonal" class="tema-item">
+      <router-link to="presentacion" class="tema-item">
         <div>
           <img src="@/assets/img/presentacion.png" alt="" />
           <h5>Presentacion Personal</h5>
         </div>
       </router-link>
-      <router-link to="numeros" class="tema-item">
+      <router-link to="preguntas" class="tema-item">
         <div>
           <img src="@/assets/img/preguntas.png" alt="" />
           <h5>Preguntas básicas </h5>
         </div>
       </router-link>
-      <router-link to="colores" class="tema-item">
+      <router-link to="verbos" class="tema-item">
         <div>
           <img src="@/assets/img/verbs.png" alt="" />
           <h5>Verbos</h5>
@@ -101,7 +99,7 @@ export default {
   display: flex;
   align-items: center;
   text-align: center;
-  justify-content: space-around;
+  justify-content: center;
 }
 .tema-item {
   text-decoration: none;
@@ -120,7 +118,7 @@ main {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   margin-bottom: 5vh;
 }
@@ -139,7 +137,7 @@ main {
   opacity: 0.5; /* Reduce la opacidad para dar la apariencia de deshabilitado */
   background-color: #ccc; /* Cambia el color de fondo para indicar que está deshabilitado */
   pointer-events: none; /* Evita eventos de ratón y clics en el bloque */
-  cursor: not-allowed;
+  /* cursor: not-allowed; */
 }
 
 .name {

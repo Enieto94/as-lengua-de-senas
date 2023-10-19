@@ -8,7 +8,7 @@
       pregunta.visto == false ? 'letter-item' :
       pregunta.visto == true ? 'letter-item active':
       'letter-item'"   v-for="pregunta in preguntas" :key="pregunta.id" @click="mostrarImg(pregunta.url_src,pregunta.id,pregunta.visto)" >
-        <!-- <img :src="character.url_src" alt=""> -->
+        <!-- <img :src="pregunta.url_src" alt=""> -->
         
           <span>{{ pregunta.nom_letra }}</span>
 
@@ -57,7 +57,7 @@ export default {
   setup() {
     const store = useStore();
      const preguntas = computed(() => {
-      return store.state.preguntasFilter;
+      return store.state.charactersFilter;
     });
    
     onMounted(() => {
@@ -101,11 +101,11 @@ export default {
         // alert('completado ')
         this.currentColor = '00CD56'
       }
-      if(this.count > 4 && this.count < 10){
+      if(this.count > 4 && this.count < 8){
         // alert('mayor a 14 y menor a 20')
         this.currentColor = 'F4EB49'
       }
-      if(this.count < 4){
+      if(this.count < 2){
         // alert('no ha terminado')
         this.currentColor = 'F1191C'
       }
