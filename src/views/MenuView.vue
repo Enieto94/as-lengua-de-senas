@@ -24,7 +24,7 @@
 
 export default  {
   name: "MenuView",
-  props:['count','score','modulo']
+  props:['count','score','modulo','nombre']
 }
 </script>
 

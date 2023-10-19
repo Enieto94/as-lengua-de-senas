@@ -4,6 +4,10 @@
     <img src="@/assets/img/bandera-colombia.png" alt="" />
   </nav>
 
+  <div class="name" >Nombre {{ msg }}</div>
+    <div class="score">
+      Niveles: 1/3
+    </div>
   <main>
     <div class="tema-c">
       <div class="info-c">
@@ -33,7 +37,7 @@
       </router-link>
     </div>
     
-    <button @click="toggleClass">Cambiar Clase</button>
+    <!-- <button @click="toggleClass">Cambiar Clase</button> -->
 
     <div class="tema-c" v-bind:class="{locked: isActive}">
       <div class="info-c">
@@ -75,7 +79,8 @@ export default {
   name: "TemasView",
   data() {
     return {
-      isActive: true
+      isActive: true,
+      unlock: true
     };    
   },
   components: {
@@ -135,6 +140,25 @@ main {
   background-color: #ccc; /* Cambia el color de fondo para indicar que está deshabilitado */
   pointer-events: none; /* Evita eventos de ratón y clics en el bloque */
   cursor: not-allowed;
+}
+
+.name {
+  position: fixed;
+  top: 10px; 
+  left: 100px;
+  background: #000000bc;
+  color: #fff;
+  padding: 5px 15px;
+  border-radius: 10px;
+}
+.score {
+  position: fixed;
+  top: 10px; 
+  right: 20px;
+  background: #000000bc;
+  color: #fff;
+  padding: 5px 15px;
+  border-radius: 10px;
 }
 
 </style>

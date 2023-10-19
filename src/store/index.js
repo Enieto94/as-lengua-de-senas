@@ -3,17 +3,28 @@ import Vuex from "vuex"
 import { createStore } from 'vuex';
 export const store = new Vuex.Store(Vue);
 
-
 export default createStore({
 	state: {
 		characters: [],
 		charactersFilter: [],
 		colors: [],
 		colorsFilter: [],
+		presentaciones: [],
+		verbos: [],
+		preguntas: [],
 		setTrue: Boolean
 	},
 	mutations: {
 		setCharacters(state, payload) {
+			state.characters = payload
+		},
+		setPresentaciones(state, payload) {
+			state.characters = payload
+		},
+		setPreguntas(state, payload) {
+			state.characters = payload
+		},
+		setVerbos(state, payload) {
 			state.characters = payload
 		},
 		setCharactersFilter(state, payload) {
@@ -58,6 +69,42 @@ export default createStore({
 				const data = await response.json()
 				commit('setCharacters', data)
 				commit('setCharactersFilter', data)
+				console.log(data)
+			} catch (error) {
+				console.log(error)
+			}
+
+		},
+		async getPreguntas({ commit }) {
+			try {
+				const response = await fetch('http://127.0.0.1:8000/api/pregunta')
+				const data = await response.json()
+				commit('setPreguntas', data)
+				// commit('setCharactersFilter', data)
+				console.log(data)
+			} catch (error) {
+				console.log(error)
+			}
+
+		},
+		async getPresentaciones({ commit }) {
+			try {
+				const response = await fetch('http://127.0.0.1:8000/api/presentacion')
+				const data = await response.json()
+				commit('setPresentaciones', data)
+				// commit('setCharactersFilter', data)
+				console.log(data)
+			} catch (error) {
+				console.log(error)
+			}
+
+		},
+		async getVerbos({ commit }) {
+			try {
+				const response = await fetch('http://127.0.0.1:8000/api/verbo')
+				const data = await response.json()
+				commit('setVerbos', data)
+				// commit('setCharactersFilter', data)
 				console.log(data)
 			} catch (error) {
 				console.log(error)
