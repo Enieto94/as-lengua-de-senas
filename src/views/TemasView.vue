@@ -105,7 +105,7 @@ export default {
   text-decoration: none;
 }
 main {
-  padding-top: 46vh;
+  padding-top: 60px;
   background: var(--vt-c-naranja);
   padding-bottom: 5vh;
 }
