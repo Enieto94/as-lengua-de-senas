@@ -2,7 +2,7 @@
   <main>
     <img src="@/assets/img/banner-index.png" alt="" />
     <div class="text-white">¡Escribe tu nombre!</div>
-    <input type="text" name="nombre" id="nombre" v-model="msg">
+    <input type="text" name="nombre" id="nombre" >
     <button class="btn-inicio" id="continuar">
       <router-link to="/temas">Aprender señas</router-link>
     </button>
@@ -10,7 +10,7 @@
 </template>
 <script>
 export default {
-  name: "HomeView",
+  name: "HomeView"
 };
 </script>
 <style scoped>

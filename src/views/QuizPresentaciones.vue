@@ -1,11 +1,11 @@
 <template>
   <MenuAtrasTop></MenuAtrasTop>
     <main>
-        <h1>QUIZ ABECEDARIO ASL </h1>
+        <h1>QUIZ PRESENTACIONES ASL </h1>
         <div v-if="!repaso">
             <h2>REPASO</h2>
             <center>
-                <video  src="https://apiasl.netlify.app/src/img/repaso/presentacion.mp4" autoplay="true"  muted></video>
+                <video  src="https://apiasl.netlify.app/src/img/repaso/presentacion.mp4" autoplay="true"  muted style="margin: 0 auto"></video>
             </center>
 
             <center>
@@ -19,7 +19,7 @@
         <div v-if="repaso">
             <section class="quiz" v-if="!quizCompleted">
                 <center>
-                    <progress id="file" max="100" :value="score*10" >  </progress>
+                    <progress id="file" max="100" :value="score*5" >  </progress>
                 </center>
                 <div class="quiz-info">
                     <img class="question" :src="getCurrentQuestion.question">
@@ -266,5 +266,9 @@ button {
 }
 ::-webkit-progress-bar {
    background-color: var(--vt-c-naranja);
+}
+.quiz-info {
+    display: flex;
+    justify-content: center;
 }
 </style>

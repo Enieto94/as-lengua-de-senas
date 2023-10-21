@@ -4,7 +4,7 @@
     <img src="@/assets/img/bandera-colombia.png" alt="" />
   </nav>
 
-  <div class="name" >Nombre {{ msg }}</div>
+  <div class="name" >Nombre</div>
   <main>
     <div class="tema-c">
       <div class="info-c">
@@ -142,8 +142,8 @@ main {
 
 .name {
   position: fixed;
-  top: 10px; 
-  left: 100px;
+  top: 60px; 
+  left: 10px;
   background: #000000bc;
   color: #fff;
   padding: 5px 15px;

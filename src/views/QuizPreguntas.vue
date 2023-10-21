@@ -1,7 +1,7 @@
 <template>
   <MenuAtrasTop></MenuAtrasTop>
     <main>
-        <h1>QUIZ ABECEDARIO ASL </h1>
+        <h1>QUIZ PREGUNTAS ASL </h1>
         <div v-if="!repaso">
             <h2>REPASO</h2>
             <center>
@@ -321,5 +321,9 @@ button {
 }
 ::-webkit-progress-bar {
    background-color: var(--vt-c-naranja);
+}
+.quiz-info {
+    display: flex;
+    justify-content: center;
 }
 </style>
