@@ -1,7 +1,7 @@
 <template>
   <MenuAtrasTop :currentColor="currentColor" :modulo="modulo"></MenuAtrasTop>
   <main>
-    <FilterByName></FilterByName>
+    <FilterByPregunta></FilterByPregunta>
     
     <div class="letters-c">
       <div :class="
@@ -45,7 +45,7 @@
 import { onMounted, computed } from "vue";
 import { useStore } from "vuex";
 import MenuAtrasTop from "../components/MenuAtrasTop.vue";
-import FilterByName from "../components/FilterByName.vue";
+import FilterByPregunta from "../components/FilterByPregunta.vue";
 import MenuView from "../views/MenuView.vue";
 import store from "@/store";
 
@@ -53,11 +53,11 @@ import store from "@/store";
 
 export default {
   name: "PreguntasView",
-  components: { MenuAtrasTop, MenuView,FilterByName },
+  components: { MenuAtrasTop, MenuView,FilterByPregunta },
   setup() {
     const store = useStore();
      const preguntas = computed(() => {
-      return store.state.charactersFilter;
+      return store.state.preguntasFilter;
     });
    
     onMounted(() => {
@@ -78,8 +78,10 @@ export default {
   },
   methods: {
     mostrarImg(url_src, id, visto) {
-      document.getElementById('imgshow').src=url_src
-      
+      setTimeout(() => {
+        store.dispatch("getPreguntas");
+        
+      }, 1000);      
       const data = {
         "visto": !visto
       }; 
@@ -94,7 +96,6 @@ export default {
       .then(response => response.json())
       .then(data => console.log(data))
       .catch(error => console.error(error));
-      store.dispatch("getPreguntas");
       this.count++;
    
       if(this.count >= 9){

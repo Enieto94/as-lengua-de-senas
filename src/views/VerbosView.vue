@@ -1,7 +1,7 @@
 <template>
   <MenuAtrasTop :currentColor="currentColor" :modulo="modulo"></MenuAtrasTop>
   <main>
-    <FilterByName></FilterByName>
+    <FilterByVerbo></FilterByVerbo>
     
     <div class="letters-c">
       <div :class="
@@ -45,7 +45,7 @@
 import { onMounted, computed } from "vue";
 import { useStore } from "vuex";
 import MenuAtrasTop from "../components/MenuAtrasTop.vue";
-import FilterByName from "../components/FilterByName.vue";
+import FilterByVerbo from "../components/FilterByVerbo.vue";
 import MenuView from "../views/MenuView.vue";
 import store from "@/store";
 
@@ -53,11 +53,11 @@ import store from "@/store";
 
 export default {
   name: "VerbosView",
-  components: { MenuAtrasTop, MenuView,FilterByName },
+  components: { MenuAtrasTop, MenuView,FilterByVerbo },
   setup() {
     const store = useStore();
      const verbos = computed(() => {
-      return store.state.charactersFilter;
+      return store.state.verbosFilter;
     });
    
     onMounted(() => {
@@ -78,8 +78,11 @@ export default {
   },
   methods: {
     mostrarImg(url_src, id, visto) {
-      document.getElementById('imgshow').src=url_src
-      
+      // document.getElementById('imgshow').src=url_src
+      setTimeout(() => {
+        store.dispatch("getVerbos");
+        
+      }, 1000);   
       const data = {
         "visto": !visto
       }; 
@@ -94,7 +97,6 @@ export default {
       .then(response => response.json())
       .then(data => console.log(data))
       .catch(error => console.error(error));
-      store.dispatch("getVerbos");
       this.count++;
    
       if(this.count >= 9){

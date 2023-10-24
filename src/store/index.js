@@ -11,6 +11,7 @@ export default createStore({
 		colorsFilter: [],
 		presentaciones: [],
 		presentacionesFilter: [],
+		verbosFilter: [],
 		verbos: [],
 		preguntas: [],
 		preguntasFilter: [],
@@ -21,14 +22,14 @@ export default createStore({
 			state.characters = payload
 		},
 		setPresentaciones(state, payload) {
-			state.characters = payload
+			state.presentaciones = payload
 		},
 		setPreguntas(state, payload) {
-			state.characters = payload
+			state.preguntas = payload
 		},
 
 		setVerbos(state, payload) {
-			state.characters = payload
+			state.verbos = payload
 		},
 		setCharactersFilter(state, payload) {
 			state.charactersFilter = payload
@@ -40,11 +41,14 @@ export default createStore({
 			state.colorsFilter = payload
 		},
 		setPreguntasFilter(state, payload) {
-			state.charactersFilter = payload
+			state.preguntasFilter = payload
 		},
 		setPresentacionesFilter(state, payload) {
-			state.charactersFilter = payload
+			state.presentacionesFilter = payload
 		},
+		setVerbosFilter(state, payload) {
+			state.verbosFilter = payload
+		}
 
 	},
 	actions: {
@@ -113,12 +117,48 @@ export default createStore({
 				const response = await fetch('http://127.0.0.1:8000/api/verbo')
 				const data = await response.json()
 				commit('setVerbos', data)
-				commit('setCharactersFilter', data)
+				commit('setVerbosFilter', data)
 				console.log(data)
 			} catch (error) {
 				console.log(error)
 			}
 
+		},
+		filterByVerbo({ commit, state }, name) {
+			const formatName = name.toLowerCase()
+			const results = state.verbos.filter((verbo) => {
+				const verboName = verbo.nom_letra.toLowerCase()
+
+				if (verboName.includes(formatName)) {
+					return verbo
+				}
+			})
+
+			commit('setVerbosFilter', results)
+		},
+		filterByPresentacion({ commit, state }, name) {
+			const formatName = name.toLowerCase()
+			const results = state.presentaciones.filter((presentacion) => {
+				const presentacionName = presentacion.nom_letra.toLowerCase()
+
+				if (presentacionName.includes(formatName)) {
+					return presentacion
+				}
+			})
+
+			commit('setPresentacionesFilter', results)
+		},
+		filterByPregunta({ commit, state }, name) {
+			const formatName = name.toLowerCase()
+			const results = state.preguntas.filter((pregunta) => {
+				const preguntaName = pregunta.nom_letra.toLowerCase()
+
+				if (preguntaName.includes(formatName)) {
+					return pregunta
+				}
+			})
+
+			commit('setPreguntasFilter', results)
 		},
 		filterByName({ commit, state }, name) {
 			const formatName = name.toLowerCase()

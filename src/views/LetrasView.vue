@@ -77,6 +77,10 @@ export default {
     mostrarImg(url_src, id, visto) {
       // let vistos = document.getElementsByClassName('active').length
       // alert(vistos)
+      setTimeout(() => {
+        store.dispatch("getCharacters");
+        
+      }, 1000);   
       const data = {
         "visto": !visto
       };     
@@ -90,7 +94,7 @@ export default {
       .then(response => response.json())
       .then(data => console.log(data))
       .catch(error => console.error(error));
-      store.dispatch("getCharacters")
+      
       this.count++;
    
       if(this.count >= 27){

@@ -1,7 +1,7 @@
 <template>
   <MenuAtrasTop :currentColor="currentColor" :modulo="modulo"></MenuAtrasTop>
   <main>
-    <FilterByName></FilterByName>
+    <FilterByPresentacion></FilterByPresentacion>
     
     <div class="letters-c">
       <div :class="
@@ -45,7 +45,7 @@
 import { onMounted, computed } from "vue";
 import { useStore } from "vuex";
 import MenuAtrasTop from "../components/MenuAtrasTop.vue";
-import FilterByName from "../components/FilterByName.vue";
+import FilterByPresentacion from "../components/FilterByPresentacion.vue";
 import MenuView from "../views/MenuView.vue";
 import store from "@/store";
 
@@ -53,11 +53,11 @@ import store from "@/store";
 
 export default {
   name: "PresentacionView",
-  components: { MenuAtrasTop, MenuView,FilterByName },
+  components: { MenuAtrasTop, MenuView,FilterByPresentacion },
   setup() {
     const store = useStore();
      const presentaciones = computed(() => {
-      return store.state.charactersFilter;
+      return store.state.presentacionesFilter;
     });
    
     onMounted(() => {
@@ -78,7 +78,10 @@ export default {
   },
   methods: {
     mostrarImg(url_src, id, visto) {
-      document.getElementById('imgshow').src=url_src
+      setTimeout(() => {
+        store.dispatch("getPresentaciones");
+        
+      }, 1000);   
       
       const data = {
         "visto": !visto
@@ -94,7 +97,7 @@ export default {
       .then(response => response.json())
       .then(data => console.log(data))
       .catch(error => console.error(error));
-      store.dispatch("getPresentaciones");
+      
       this.count++;
    
       if(this.count >= 5){

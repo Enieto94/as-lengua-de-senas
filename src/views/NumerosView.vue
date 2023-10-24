@@ -77,8 +77,11 @@ export default {
   },
   methods: {
     mostrarImg(url_src, id, visto) {
-      document.getElementById('imgshow').src=url_src
-      
+      // document.getElementById('imgshow').src=url_src
+      setTimeout(() => {
+        store.dispatch("getNumbers");
+        
+      }, 1000);   
       const data = {
         "visto": !visto
       }; 
@@ -93,7 +96,7 @@ export default {
       .then(response => response.json())
       .then(data => console.log(data))
       .catch(error => console.error(error));
-      store.dispatch("getNumbers");
+      
       this.count++;
    
       if(this.count >= 9){

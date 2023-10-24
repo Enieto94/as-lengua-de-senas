@@ -77,7 +77,10 @@ export default {
   methods: {
     mostrarImg(url_src, id, visto) {
       document.getElementById('imgshow').src=url_src
-      
+      setTimeout(() => {
+        store.dispatch("getColores");
+        
+      }, 1000);   
       const data = {
         "visto": !visto
       }; 
@@ -92,7 +95,7 @@ export default {
       .then(response => response.json())
       .then(data => console.log(data))
       .catch(error => console.error(error));
-      store.dispatch("getColores");
+      
       this.count++;
    
       if(this.count >= 10){
