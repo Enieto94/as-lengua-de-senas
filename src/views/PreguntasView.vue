@@ -81,7 +81,7 @@ export default {
       setTimeout(() => {
         store.dispatch("getPreguntas");
         
-      }, 1000);      
+      }, 500);      
       const data = {
         "visto": !visto
       }; 

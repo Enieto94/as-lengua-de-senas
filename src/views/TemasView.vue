@@ -1,11 +1,15 @@
  <template>
   <nav>
-    <h1>AS - Lengua de señas</h1>
+    <h1>AS - Lengua de señas</h1> <br>
+    <p>{{ nivelesCompletados }}</p>
     <img src="@/assets/img/bandera-colombia.png" alt="" />
   </nav>
 
   <div class="name">{{ miDato }}</div>
-  <div class="reset" @click="desbloquear()"><h4>Reiniciar </h4></div>
+  <div class="reset" @click="bloquear()">
+    <h4>Reiniciar </h4>
+    <input type="text" id="nuevoValor" placeholder="Nuevo valor" style="display: none">
+  </div>
   <main>
     <div class="tema-c">
       <div class="info-c">
@@ -35,10 +39,10 @@
       </router-link>
     </div>
     
-    <!-- <button @click="desbloquear">Cambiar Clase</button> -->
+    <!-- <button @click="bloquear">Cambiar Clase</button> -->
 
     <!-- <div class="tema-c" v-bind:class="{locked: isActive}"> -->
-    <div class="tema-c" id="nivel-2">
+    <div class="tema-c locked" id="nivel-2">
       <div class="info-c">
         <img src="@/assets/img/info.png" alt="" />
         <div>
@@ -76,6 +80,27 @@
 import { RouterLink } from "vue-router";
 import MenuView from "./MenuView.vue";
 
+function actualizarRegistro() {
+    var nuevoValor = 0;
+
+    // Crear un objeto XMLHttpRequest
+    var xhr = new XMLHttpRequest();
+
+    // Configurar la solicitud AJAX
+    xhr.open("POST", "http://localhost:3000/update.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    // Definir la función de callback para manejar la respuesta
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            console.log('hecho')
+        }
+    };
+
+    // Enviar los datos al servidor
+    var data =  nuevoValor;
+    xhr.send(data);
+}
 
 export default {
   name: "TemasView",
@@ -92,11 +117,9 @@ export default {
     MenuView,
   },
   methods: {
-    desbloquear() {
-        // Cambia el estado de isActive cuando hace clic en el botón
-        let level = document.getElementById('nivel-2');
-        level.classList.add('locked')
-
+    bloquear() {
+       actualizarRegistro();
+       document.getElementById("nivel-2").classList.remove("locked");
     }
   }
 };

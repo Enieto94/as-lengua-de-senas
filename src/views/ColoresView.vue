@@ -2,6 +2,7 @@
   <MenuAtrasTop :currentColor="currentColor" :modulo="modulo"></MenuAtrasTop>
   <main>
     <FilterByColor></FilterByColor>
+    {{ nivelesCompletados }}
     
     <div class="letters-c">
       <div :class="
@@ -80,7 +81,7 @@ export default {
       setTimeout(() => {
         store.dispatch("getColores");
         
-      }, 1000);   
+      }, 500);   
       const data = {
         "visto": !visto
       }; 

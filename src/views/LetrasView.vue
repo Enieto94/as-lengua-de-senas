@@ -80,7 +80,7 @@ export default {
       setTimeout(() => {
         store.dispatch("getCharacters");
         
-      }, 1000);   
+      }, 500);   
       const data = {
         "visto": !visto
       };     

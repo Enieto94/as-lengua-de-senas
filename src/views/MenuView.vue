@@ -35,7 +35,7 @@ function restoreStorage() {
 }
 export default  {
   name: "MenuView",
-  props:['count','score','modulo','nombre'],
+  props:['count','score','modulo','nombre','nivelesCompletados'],
   data() {
     return {
       restoreStorage

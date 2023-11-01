@@ -82,7 +82,7 @@ export default {
       setTimeout(() => {
         store.dispatch("getVerbos");
         
-      }, 1000);   
+      }, 500);   
       const data = {
         "visto": !visto
       }; 
