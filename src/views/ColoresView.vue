@@ -2,7 +2,6 @@
   <MenuAtrasTop :currentColor="currentColor" :modulo="modulo"></MenuAtrasTop>
   <main>
     <FilterByColor></FilterByColor>
-    {{ nivelesCompletados }}
     
     <div class="letters-c">
       <div :class="

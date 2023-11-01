@@ -1,18 +1,18 @@
 <template>
   <MenuAtrasTop :currentColor="currentColor" :modulo="modulo"></MenuAtrasTop>
   <main>
-    <FilterByName></FilterByName>
+    <FilterByNumber></FilterByNumber>
     
     <div class="letters-c">
       <div :class="
-      character.visto == false ? 'letter-item' :
-      character.visto == true ? 'letter-item active':
-      'letter-item'"   v-for="character in characters" :key="character.id" @click="mostrarImg(character.url_src,character.id,character.visto)" >
-        <!-- <img :src="character.url_src" alt=""> -->
+      number.visto == false ? 'letter-item' :
+      number.visto == true ? 'letter-item active':
+      'letter-item'"   v-for="number in numbers" :key="number.id" @click="mostrarImg(number.url_src,number.id,number.visto)" >
+        <!-- <img :src="number.url_src" alt=""> -->
         
-          <span>{{ character.nom_letra }}</span>
+          <span>{{ number.nom_letra }}</span>
 
-          <div v-if="character.visto">
+          <div v-if="number.visto">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <title>eye</title>
               <path
@@ -45,7 +45,7 @@
 import { onMounted, computed } from "vue";
 import { useStore } from "vuex";
 import MenuAtrasTop from "../components/MenuAtrasTop.vue";
-import FilterByName from "../components/FilterByName.vue";
+import FilterByNumber from "../components/FilterByNumber.vue";
 import MenuView from "../views/MenuView.vue";
 import store from "@/store";
 
@@ -53,17 +53,17 @@ import store from "@/store";
 
 export default {
   name: "NumerosView",
-  components: { MenuAtrasTop, MenuView,FilterByName },
+  components: { MenuAtrasTop, MenuView,FilterByNumber },
   setup() {
     const store = useStore();
-    const characters = computed(() => {
-      return store.state.charactersFilter;
+    const numbers = computed(() => {
+      return store.state.numbersFilter;
     });
     onMounted(() => {
       store.dispatch("getNumbers");
     });
     return {
-      characters,
+      numbers,
     };
   },
   data() {

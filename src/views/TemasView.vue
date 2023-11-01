@@ -1,7 +1,6 @@
  <template>
   <nav>
     <h1>AS - Lengua de señas</h1> <br>
-    <p>{{ nivelesCompletados }}</p>
     <img src="@/assets/img/bandera-colombia.png" alt="" />
   </nav>
 
@@ -38,6 +37,9 @@
         </div>
       </router-link>
     </div>
+    <div>
+      Niveles completados: ¡ {{ nivelesCompletados }}!
+    </div>
     
     <!-- <button @click="bloquear">Cambiar Clase</button> -->
 
@@ -71,12 +73,15 @@
       <br>
     </div>
   </main>
-  <MenuView></MenuView>
+  <MenuView :nivelesCompletados="nivelesCompletados"></MenuView>
 </template>
 
 <script>
 
 // import {ref} from 'vue'
+import { onMounted, computed } from "vue";
+import { useStore } from "vuex";
+
 import { RouterLink } from "vue-router";
 import MenuView from "./MenuView.vue";
 
@@ -104,12 +109,35 @@ function actualizarRegistro() {
 
 export default {
   name: "TemasView",
+  setup() {
+    const store = useStore();
+    const colors = computed(() => {
+      return store.state.colorsFilter;
+    });
+    const characters = computed(() => {
+      return store.state.charactersFilter;
+    });
+    const numbers = computed(() => {
+      return store.state.numbersFilter;
+    });
+     onMounted(() => {
+      store.dispatch("getColores");
+      store.dispatch("getNumbers");
+      store.dispatch("getCharacters");
+    });
+    return {
+       colors,
+      characters,
+      numbers
+    }
+  },
   data() {
     return {
       sublevels: 0,
       isActive: true,
       unlock: false,
-      miDato: localStorage.getItem('miDato')
+      miDato: localStorage.getItem('miDato'),
+     
     };    
   },
   components: {

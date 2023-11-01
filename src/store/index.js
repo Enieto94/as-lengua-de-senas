@@ -8,6 +8,8 @@ export default createStore({
 		characters: [],
 		charactersFilter: [],
 		colors: [],
+		numbers: [],
+		numbersFilter: [],
 		colorsFilter: [],
 		presentaciones: [],
 		presentacionesFilter: [],
@@ -21,6 +23,9 @@ export default createStore({
 		setCharacters(state, payload) {
 			state.characters = payload
 		},
+		setNumbers(state, payload) {
+			state.numbers = payload
+		},
 		setPresentaciones(state, payload) {
 			state.presentaciones = payload
 		},
@@ -33,6 +38,9 @@ export default createStore({
 		},
 		setCharactersFilter(state, payload) {
 			state.charactersFilter = payload
+		},
+		setNumbersFilter(state, payload) {
+			state.numbersFilter = payload
 		},
 		setColors(state, payload) {
 			state.colors = payload
@@ -81,8 +89,8 @@ export default createStore({
 			try {
 				const response = await fetch('http://127.0.0.1:8000/api/numeros')
 				const data = await response.json()
-				commit('setCharacters', data)
-				commit('setCharactersFilter', data)
+				commit('setNumbers', data)
+				commit('setNumbersFilter', data)
 				console.log(data)
 			} catch (error) {
 				console.log(error)
@@ -184,6 +192,18 @@ export default createStore({
 			})
 
 			commit('setColorsFilter', results)
+		},
+		filterByNumber({ commit, state }, name) {
+			const formatName = name.toLowerCase()
+			const results = state.numbers.filter((number) => {
+				const numberName = number.nom_letra.toLowerCase()
+
+				if (numberName.includes(formatName)) {
+					return number
+				}
+			})
+
+			commit('setNumbersFilter', results)
 		}
 	},
 	modules: {
