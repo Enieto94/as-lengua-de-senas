@@ -3,7 +3,7 @@
   <header>
     <RouterLink to="/temas">Temas</RouterLink>
     
-    <RouterLink to="/">
+    <RouterLink to="/" @click="restoreStorage">
       <img
         alt="Vue logo"
         class="logo"
@@ -23,12 +23,28 @@
 </template>
 
 <script>
+import { watchEffect } from 'vue';
 
 
+function restoreStorage() {
+  localStorage.removeItem("miDato");
+  // localStorage.clear();
+  localStorage.clear();
+  localStorage.setItem("miDato",'');
+
+}
 export default  {
   name: "MenuView",
-  props:['count','score','modulo','nombre']
+  props:['count','score','modulo','nombre'],
+  data() {
+    return {
+      restoreStorage
+    }
+  }
 }
+watchEffect(()=>{
+  restoreStorage
+})
 </script>
 
 <style scoped>

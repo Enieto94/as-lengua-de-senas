@@ -2,16 +2,31 @@
   <main>
     <img src="@/assets/img/banner-index.png" alt="" />
     <div class="text-white">¡Escribe tu nombre!</div>
-    <input type="text" name="nombre" id="nombre" >
-    <button class="btn-inicio" id="continuar">
-      <router-link to="/temas">Aprender señas</router-link>
-    </button>
+    <input type="text" name="nombre" id="nombre" v-model="localStorageData">
+    <button class="btn-inicio" id="continuar" @click="guardarEnLocalStorage">
+      <router-link to="/temas" >Aprender señas</router-link>
+    </button> 
   </main>
 </template>
 <script>
+import { ref , watchEffect} from 'vue';
+let localStorageData = ref(localStorage.getItem('miDato'));
+function guardarEnLocalStorage() {
+  localStorage.setItem('miDato', localStorageData.value);
+}
+
 export default {
-  name: "HomeView"
+  name: "HomeView",
+  data() {
+    return {
+      localStorageData
+    }
+  }
 };
+
+watchEffect(() => {
+  guardarEnLocalStorage();
+});
 </script>
 <style scoped>
 main {

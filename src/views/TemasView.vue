@@ -1,10 +1,11 @@
-<template>
+ <template>
   <nav>
     <h1>AS - Lengua de señas</h1>
     <img src="@/assets/img/bandera-colombia.png" alt="" />
   </nav>
 
-  <div class="name" >Nombre</div>
+  <div class="name">{{ miDato }}</div>
+  <div class="reset" @click="desbloquear()"><h4>Reiniciar </h4></div>
   <main>
     <div class="tema-c">
       <div class="info-c">
@@ -34,10 +35,10 @@
       </router-link>
     </div>
     
-    <!-- <button @click="toggleClass">Cambiar Clase</button> -->
+    <!-- <button @click="desbloquear">Cambiar Clase</button> -->
 
     <!-- <div class="tema-c" v-bind:class="{locked: isActive}"> -->
-    <div class="tema-c">
+    <div class="tema-c" id="nivel-2">
       <div class="info-c">
         <img src="@/assets/img/info.png" alt="" />
         <div>
@@ -54,7 +55,7 @@
       <router-link to="preguntas" class="tema-item">
         <div>
           <img src="@/assets/img/preguntas.png" alt="" />
-          <h5>Preguntas básicas </h5>
+          <h5>Preguntas básicas</h5>
         </div>
       </router-link>
       <router-link to="verbos" class="tema-item">
@@ -70,15 +71,20 @@
 </template>
 
 <script>
+
+// import {ref} from 'vue'
 import { RouterLink } from "vue-router";
 import MenuView from "./MenuView.vue";
+
 
 export default {
   name: "TemasView",
   data() {
     return {
+      sublevels: 0,
       isActive: true,
-      unlock: true
+      unlock: false,
+      miDato: localStorage.getItem('miDato')
     };    
   },
   components: {
@@ -86,14 +92,21 @@ export default {
     MenuView,
   },
   methods: {
-    toggleClass() {
+    desbloquear() {
         // Cambia el estado de isActive cuando hace clic en el botón
-        this.isActive = !this.isActive;
+        let level = document.getElementById('nivel-2');
+        level.classList.add('locked')
+
     }
-  },
+  }
 };
+
 </script>
 <style scoped>
+input {
+  border: 0;
+  outline: 0;
+}
 .info-c {
   width: 100%;
   display: flex;
@@ -149,14 +162,15 @@ main {
   padding: 5px 15px;
   border-radius: 10px;
 }
-.score {
+.reset {
   position: fixed;
-  top: 10px; 
+  top: 60px; 
   right: 20px;
-  background: #000000bc;
-  color: #fff;
+  background: var(--vt-c-negro);
+  color: var(--vt-c-verde-lima);
   padding: 5px 15px;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 </style>

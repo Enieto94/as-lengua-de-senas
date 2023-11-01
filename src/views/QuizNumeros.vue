@@ -198,6 +198,128 @@ import MenuAtrasTop from "../components/MenuAtrasTop.vue";
             ],
             selected: null
         },
+        {
+            question: "https://apiasl.netlify.app/src/img/numeros/numero_10.gif",
+            answer: 2,
+            options: [
+                'numero 2',
+                'numero 7',
+                'numero 10',
+                'numero 3'
+            ],
+            selected: null
+        },
+        {
+            question: "https://apiasl.netlify.app/src/img/numeros/numero_20.gif",
+            answer: 0,
+            options: [
+                'numero 20',
+                'numero 7',
+                'numero 10',
+                'numero 3'
+            ],
+            selected: null
+        },
+        {
+            question: "https://apiasl.netlify.app/src/img/numeros/numero_30.gif",
+            answer: 2,
+            options: [
+                'numero 20',
+                'numero 7',
+                'numero 30',
+                'numero 3'
+            ],
+            selected: null
+        },
+         {
+            question: "https://apiasl.netlify.app/src/img/numeros/numero_40.gif",
+            answer: 1,
+            options: [
+                'numero 20',
+                'numero 40',
+                'numero 30',
+                'numero 3'
+            ],
+            selected: null
+        },
+         {
+            question: "https://apiasl.netlify.app/src/img/numeros/numero_50.gif",
+            answer: 1,
+            options: [
+                'numero 20',
+                'numero 50',
+                'numero 30',
+                'numero 3'
+            ],
+            selected: null
+        },
+         {
+            question: "https://apiasl.netlify.app/src/img/numeros/numero_60.gif",
+            answer: 0,
+            options: [
+                'numero 60',
+                'numero 11',
+                'numero 30',
+                'numero 9'
+            ],
+            selected: null
+        },
+         {
+            question: "https://apiasl.netlify.app/src/img/numeros/numero_70.gif",
+            answer: 2,
+            options: [
+                'numero 30',
+                'numero 20',
+                'numero 70',
+                'numero 3'
+            ],
+            selected: null
+        },
+         {
+            question: "https://apiasl.netlify.app/src/img/numeros/numero_80.gif",
+            answer: 1,
+            options: [
+                'numero 20',
+                'numero 80',
+                'numero 30',
+                'numero 3'
+            ],
+            selected: null
+        },
+         {
+            question: "https://apiasl.netlify.app/src/img/numeros/numero_90.gif",
+            answer: 2,
+            options: [
+                'numero 20',
+                'numero 7',
+                'numero 90',
+                'numero 15'
+            ],
+            selected: null
+        },
+         {
+            question: "https://apiasl.netlify.app/src/img/numeros/numero_100.gif",
+            answer: 3,
+            options: [
+                'numero 20',
+                'numero 7',
+                'numero 110',
+                'numero 100'
+            ],
+            selected: null
+        },
+         {
+            question: "https://apiasl.netlify.app/src/img/numeros/numero_00.gif",
+            answer: 1,
+            options: [
+                'numero 20',
+                'numero 0',
+                'numero 110',
+                'numero 100'
+            ],
+            selected: null
+        }
+        
 
     ])
     const quizCompleted = ref(false);
