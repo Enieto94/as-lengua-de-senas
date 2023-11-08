@@ -19,7 +19,7 @@
         <div v-if="repaso">
             <section class="quiz" v-if="!quizCompleted">
                 <center>
-                    <progress id="file" max="100" :value="score*10" >  </progress>
+                    <progress id="file" max="100" :value="score*12" >  </progress>
                     <div v-if="showColor">Respuesta color <div :style="'background: '+getCurrentQuestion.hex+';width: 20px; height: 20px; border: solid 1px #000;margin-bottom:10px;'"></div></div>
                 </center>
                 <div class="quiz-info">

@@ -120,7 +120,6 @@ export default {
         this.currentColor ='FFFF00'
       } else if (this.arregloLetras.length >= 25 || this.arregloLetras.length == 26){
         this.currentColor ='008f39 ';
-        store.dispatch('increment');
       }
 
       document.getElementById('imgshow').src=url_src;

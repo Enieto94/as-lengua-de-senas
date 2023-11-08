@@ -19,7 +19,7 @@
         <div v-if="repaso">
             <section class="quiz" v-if="!quizCompleted">
                 <center>
-                    <progress id="file" max="100" :value="score*10" >  </progress>
+                    <progress id="file" max="100" :value="score*9" >  </progress>
                 </center>
                 <div class="quiz-info">
                     <img class="question" :src="getCurrentQuestion.question">

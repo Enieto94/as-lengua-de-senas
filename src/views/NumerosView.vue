@@ -44,12 +44,26 @@
 
 import { onMounted, computed } from "vue";
 import { useStore } from "vuex";
+import MenuView from "../views/MenuView.vue";
 import MenuAtrasTop from "../components/MenuAtrasTop.vue";
 import FilterByNumber from "../components/FilterByNumber.vue";
-import MenuView from "../views/MenuView.vue";
 import store from "@/store";
 
 // import TemaComponent from "../components/TemaComponent.vue";
+
+export let arregloLetras = document.getElementsByClassName('letter-item active');
+console.log('hola '+ arregloLetras.length);
+let color = String;
+if(arregloLetras.length < 5) {
+  color = 'ff0000';
+  
+} else if(arregloLetras.length >= 8 && arregloLetras.length < 19) {
+  color = 'FFFF00';
+  
+} else if (arregloLetras.length >= 19 || arregloLetras.length == 20){
+  color = '008f39';
+  
+}
 
 export default {
   name: "NumerosView",
@@ -64,13 +78,14 @@ export default {
     });
     return {
       numbers,
+      arregloLetras,
+      color
     };
   },
   data() {
 
     return {
-      count: 0,
-      currentColor: 'fff',
+      currentColor: color,
       modulo: 'NUMEROS'
 
     }
@@ -97,23 +112,14 @@ export default {
       .then(data => console.log(data))
       .catch(error => console.error(error));
       
-      this.count++;
-   
-      if(this.count >= 9){
-        // alert('completado ')
-        this.currentColor = '00CD56'
-      }
-      if(this.count > 4 && this.count < 10){
-        // alert('mayor a 14 y menor a 20')
-        this.currentColor = 'F4EB49'
-      }
-      if(this.count < 4){
-        // alert('no ha terminado')
-        this.currentColor = 'F1191C'
+      if(this.arregloLetras.length < 5) {
+        this.currentColor ='ff0000'
+      } else if(this.arregloLetras.length >= 8 && this.arregloLetras.length <= 19) {
+        this.currentColor ='FFFF00'
+      } else if (this.arregloLetras.length >= 19 || this.arregloLetras.length == 20){
+        this.currentColor ='008f39 ';
       }
       document.getElementById('imgshow').src=url_src;
-
-
           
     }
   }

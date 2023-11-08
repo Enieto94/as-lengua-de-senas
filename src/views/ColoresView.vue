@@ -37,20 +37,32 @@
       <img src="" alt="" id="imgshow">
   </main>
 
-  <MenuView :count="count" :modulo="modulo"></MenuView>
+  <MenuView  :modulo="modulo"></MenuView>
 </template>
 
 <script>
 
 import { onMounted, computed } from "vue";
 import { useStore } from "vuex";
+import MenuView from "../views/MenuView.vue";
 import MenuAtrasTop from "../components/MenuAtrasTop.vue";
 import FilterByColor from "../components/FilterByColor.vue";
-import MenuView from "../views/MenuView.vue";
 import store from "@/store";
 
 // import TemaComponent from "../components/TemaComponent.vue";
-
+export let arregloLetras = document.getElementsByClassName('letter-item active');
+console.log('hola '+ arregloLetras.length);
+let color = String;
+if(arregloLetras.length < 3) {
+  color = 'ff0000';
+  
+} else if(arregloLetras.length >= 5 && arregloLetras.length < 11) {
+  color = 'FFFF00';
+  
+} else if (arregloLetras.length >= 11 || arregloLetras.length == 12){
+  color = '008f39';
+  
+}
 export default {
   name: "ColoresView",
   components: { MenuAtrasTop, MenuView,FilterByColor },
@@ -64,13 +76,14 @@ export default {
     });
     return {
       colors,
+      arregloLetras,
+      color
     };
   },
   data() {
 
     return {
-      count: 0,
-      currentColor: 'fff',
+      currentColor: color,
       modulo: 'COLORES'
     }
   },
@@ -80,7 +93,7 @@ export default {
       setTimeout(() => {
         store.dispatch("getColores");
         
-      }, 500);   
+      }, 1000);   
       const data = {
         "visto": !visto
       }; 
@@ -96,20 +109,14 @@ export default {
       .then(data => console.log(data))
       .catch(error => console.error(error));
       
-      this.count++;
-   
-      if(this.count >= 10){
-        // alert('completado ')
-        this.currentColor = '00CD56'
+      if(this.arregloLetras.length < 3) {
+        this.currentColor ='ff0000'
+      } else if(this.arregloLetras.length >= 5 && this.arregloLetras.length <= 11) {
+        this.currentColor ='FFFF00'
+      } else if (this.arregloLetras.length >= 11 || this.arregloLetras.length == 12){
+        this.currentColor ='008f39 ';
       }
-      if(this.count > 4 && this.count < 10){
-        // alert('mayor a 14 y menor a 20')
-        this.currentColor = 'F4EB49'
-      }
-      if(this.count < 4){
-        // alert('no ha terminado')
-        this.currentColor = 'F1191C'
-      }
+
       document.getElementById('imgshow').src=url_src;
 
     }
