@@ -37,7 +37,7 @@
       <img src="" alt="" id="imgshow">
   </main>
 
-  <MenuView :count="count" :modulo="modulo"></MenuView>
+  <MenuView :arregloLetras="arregloLetras.length" :modulo="modulo"></MenuView>
 </template>
 
 <script>

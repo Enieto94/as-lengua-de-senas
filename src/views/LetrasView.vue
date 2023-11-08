@@ -2,7 +2,6 @@
   <MenuAtrasTop :currentColor="currentColor" :modulo="modulo" ></MenuAtrasTop>
   <main>
     <FilterByName></FilterByName>
-    <div>Vistos:  </div>
     <div class="letters-c">
       <div v-for="character in characters" :key="character.id">
         <!-- <img :src="character.url_src" alt=""> -->
@@ -37,7 +36,7 @@
      <img src="" alt="" id="imgshow" >
   </main>
 
-  <MenuView  :modulo="modulo"></MenuView>
+  <MenuView  :arregloLetras="arregloLetras.length" :modulo="modulo"></MenuView>
 </template>
 
 <script>
@@ -51,15 +50,14 @@ import FilterByName from "../components/FilterByName.vue";
 import store from "@/store";
 // import TemaComponent from "../components/TemaComponent.vue";
 export let arregloLetras = document.getElementsByClassName('letter-item active');
-console.log('hola '+ arregloLetras.length);
 let color = String;
 if(arregloLetras.length < 10) {
   color = 'ff0000';
   
-} else if(arregloLetras.length >= 10 && arregloLetras.length < 25) {
+} else if(arregloLetras.length >= 10 && arregloLetras.length < 24) {
   color = 'FFFF00';
   
-} else if (arregloLetras.length >= 25 || arregloLetras.length == 26){
+} else if (arregloLetras.length >= 24 || arregloLetras.length == 25){
   color = '008f39';
   
 }
@@ -87,7 +85,8 @@ export default {
 
     return {
       currentColor: color,
-      modulo: 'ABC',
+      modulo: 'ABC'
+
     }
   },
   methods: {
@@ -112,7 +111,6 @@ export default {
       .then(response => response.json())
       .then(data => console.log(data))
       .catch(error => console.error(error));
-
 
       if(this.arregloLetras.length < 10) {
         this.currentColor ='ff0000'

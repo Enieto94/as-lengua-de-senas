@@ -37,7 +37,7 @@
       <img src="" alt="" id="imgshow">
   </main>
 
-  <MenuView  :modulo="modulo"></MenuView>
+  <MenuView  :arregloLetras="arregloLetras.length" :modulo="modulo" ></MenuView>
 </template>
 
 <script>
@@ -56,10 +56,10 @@ let color = String;
 if(arregloLetras.length < 3) {
   color = 'ff0000';
   
-} else if(arregloLetras.length >= 5 && arregloLetras.length < 11) {
+} else if(arregloLetras.length >= 5 && arregloLetras.length < 10) {
   color = 'FFFF00';
   
-} else if (arregloLetras.length >= 11 || arregloLetras.length == 12){
+} else if (arregloLetras.length >= 10 || arregloLetras.length == 11){
   color = '008f39';
   
 }
@@ -111,9 +111,9 @@ export default {
       
       if(this.arregloLetras.length < 3) {
         this.currentColor ='ff0000'
-      } else if(this.arregloLetras.length >= 5 && this.arregloLetras.length <= 11) {
+      } else if(this.arregloLetras.length >= 5 && this.arregloLetras.length <= 10) {
         this.currentColor ='FFFF00'
-      } else if (this.arregloLetras.length >= 11 || this.arregloLetras.length == 12){
+      } else if (this.arregloLetras.length >= 10 || this.arregloLetras.length == 11){
         this.currentColor ='008f39 ';
       }
 
