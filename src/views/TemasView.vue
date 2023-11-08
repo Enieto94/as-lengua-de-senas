@@ -37,9 +37,7 @@
         </div>
       </router-link>
     </div>
-    <div>
-      Niveles completados: ¡ {{ nivelesCompletados }}!
-    </div>
+
     
     <!-- <button @click="bloquear">Cambiar Clase</button> -->
 
@@ -73,7 +71,7 @@
       <br>
     </div>
   </main>
-  <MenuView :nivelesCompletados="nivelesCompletados"></MenuView>
+  <MenuView></MenuView>
 </template>
 
 <script>
@@ -87,7 +85,6 @@ import MenuView from "./MenuView.vue";
 
 function actualizarRegistro() {
     var nuevoValor = 0;
-
     // Crear un objeto XMLHttpRequest
     var xhr = new XMLHttpRequest();
 
@@ -121,9 +118,9 @@ export default {
       return store.state.numbersFilter;
     });
      onMounted(() => {
+      store.dispatch("getCharacters");
       store.dispatch("getColores");
       store.dispatch("getNumbers");
-      store.dispatch("getCharacters");
     });
     return {
        colors,
@@ -147,7 +144,7 @@ export default {
   methods: {
     bloquear() {
        actualizarRegistro();
-       document.getElementById("nivel-2").classList.remove("locked");
+      //  document.getElementById("nivel-2").classList.remove("locked");
     }
   }
 };

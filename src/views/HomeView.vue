@@ -3,7 +3,7 @@
     <img src="@/assets/img/banner-index.png" alt="" />
     <div class="text-white">¡Escribe tu nombre!</div>
     <input type="text" name="nombre" id="nombre" v-model="localStorageData">
-    <button class="btn-inicio" id="continuar" @click="guardarEnLocalStorage">
+    <button class="btn-inicio" id="continuar" @click="guardarEnLocalStorage, bloquear()">
       <router-link to="/temas" >Aprender señas</router-link>
     </button> 
   </main>
@@ -14,6 +14,27 @@ let localStorageData = ref(localStorage.getItem('miDato'));
 function guardarEnLocalStorage() {
   localStorage.setItem('miDato', localStorageData.value);
 }
+function actualizarRegistro() {
+    var nuevoValor = 0;
+
+    // Crear un objeto XMLHttpRequest
+    var xhr = new XMLHttpRequest();
+
+    // Configurar la solicitud AJAX
+    xhr.open("POST", "http://localhost:3000/update.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    // Definir la función de callback para manejar la respuesta
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            console.log('hecho')
+        }
+    };
+
+    // Enviar los datos al servidor
+    var data =  nuevoValor;
+    xhr.send(data);
+}
 
 export default {
   name: "HomeView",
@@ -21,6 +42,12 @@ export default {
     return {
       localStorageData
     }
+  },
+  methods: {
+    bloquear() {
+       actualizarRegistro();
+      //  document.getElementById("nivel-2").classList.remove("locked");
+    },
   }
 };
 

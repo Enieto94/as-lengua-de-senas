@@ -162,5 +162,6 @@ main {
 }
 .letter-item.active {
   background: var(--vt-c-verde-lima);
+  pointer-events: none;
 }
 </style>

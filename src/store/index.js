@@ -17,9 +17,15 @@ export default createStore({
 		verbos: [],
 		preguntas: [],
 		preguntasFilter: [],
-		setTrue: Boolean
+		letrasAprobado: false,
+		coloresAprobado: false,
+		numerosAprobado: false
 	},
 	mutations: {
+		aproboLetras(state) {
+			state.letrasAprobado = true
+		}
+		,
 		setCharacters(state, payload) {
 			state.characters = payload
 		},
@@ -60,6 +66,9 @@ export default createStore({
 
 	},
 	actions: {
+		aproboLetras(context) {
+			context.commit('aproboLetras');
+		},
 		async getColores({ commit }) {
 
 			try {
@@ -207,5 +216,5 @@ export default createStore({
 		}
 	},
 	modules: {
-	}
+	},
 })

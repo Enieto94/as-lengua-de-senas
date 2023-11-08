@@ -1,8 +1,8 @@
 <template>
-  <MenuAtrasTop :currentColor="currentColor" :modulo="modulo"></MenuAtrasTop>
+  <MenuAtrasTop :currentColor="currentColor" :modulo="modulo" ></MenuAtrasTop>
   <main>
     <FilterByName></FilterByName>
-
+    <div>Vistos:  </div>
     <div class="letters-c">
       <div v-for="character in characters" :key="character.id">
         <!-- <img :src="character.url_src" alt=""> -->
@@ -37,10 +37,12 @@
      <img src="" alt="" id="imgshow" >
   </main>
 
-  <MenuView :count="count" :modulo="modulo"></MenuView>
+  <MenuView  :modulo="modulo"></MenuView>
 </template>
 
 <script>
+
+
 import { onMounted, computed } from "vue";
 import { useStore } from "vuex";
 import MenuView from "../views/MenuView.vue";
@@ -48,6 +50,19 @@ import MenuAtrasTop from "../components/MenuAtrasTop.vue";
 import FilterByName from "../components/FilterByName.vue";
 import store from "@/store";
 // import TemaComponent from "../components/TemaComponent.vue";
+export let arregloLetras = document.getElementsByClassName('letter-item active');
+console.log('hola '+ arregloLetras.length);
+let color = String;
+if(arregloLetras.length < 10) {
+  color = 'ff0000';
+  
+} else if(arregloLetras.length >= 10 && arregloLetras.length < 25) {
+  color = 'FFFF00';
+  
+} else if (arregloLetras.length >= 25 || arregloLetras.length == 26){
+  color = '008f39';
+  
+}
 
 export default {
   name: "LetrasView",
@@ -57,30 +72,33 @@ export default {
     const characters = computed(() => {
       return store.state.charactersFilter;
     });
+    
     onMounted(() => {
       store.dispatch("getCharacters");
     });
+    
     return {
-      characters
+      characters,
+      arregloLetras,
+      color
     };
   },
   data() {
 
     return {
-      count: 0,
-      currentColor: 'ffffff00',
-      modulo: 'ABC'
+      currentColor: color,
+      modulo: 'ABC',
     }
   },
   methods: {
-
     mostrarImg(url_src, id, visto) {
-      // let vistos = document.getElementsByClassName('active').length
-      // alert(vistos)
+      
       setTimeout(() => {
         store.dispatch("getCharacters");
         
-      }, 500);   
+      }, 1000);
+        
+
       const data = {
         "visto": !visto
       };     
@@ -94,28 +112,23 @@ export default {
       .then(response => response.json())
       .then(data => console.log(data))
       .catch(error => console.error(error));
-      
-      this.count++;
-   
-      if(this.count >= 27){
-        // alert('completado ')
-        this.currentColor = '00CD56'
+
+
+      if(this.arregloLetras.length < 10) {
+        this.currentColor ='ff0000'
+      } else if(this.arregloLetras.length >= 10 && this.arregloLetras.length <= 25) {
+        this.currentColor ='FFFF00'
+      } else if (this.arregloLetras.length >= 25 || this.arregloLetras.length == 26){
+        this.currentColor ='008f39 ';
+        store.dispatch('increment');
       }
-      if(this.count > 14 && this.count < 26){
-        // alert('mayor a 14 y menor a 20')
-        this.currentColor = 'F4EB49'
-      }
-      if(this.count < 14){
-        // alert('no ha terminado')
-        this.currentColor = 'F1191C'
-      }
+
       document.getElementById('imgshow').src=url_src;
       
     }
-  }
+  },
 };
 
-      
 </script>
 
 <style scoped>
@@ -155,6 +168,7 @@ main {
 }
 .letter-item.active {
   background: var(--vt-c-verde-lima);
+  pointer-events: none;
 }
 #imgshow{
   height: 150px;
@@ -162,3 +176,4 @@ main {
   box-shadow: 10px 10px 5px 0px var(--vt-c-verde);
 }
 </style>
+
