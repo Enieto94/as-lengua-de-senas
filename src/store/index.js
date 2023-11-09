@@ -19,11 +19,36 @@ export default createStore({
 		preguntasFilter: [],
 		letrasAprobado: false,
 		coloresAprobado: false,
-		numerosAprobado: false
+		numerosAprobado: false,
+		verbosAprobado: false,
+		presentacionesAprobado: false,
+		preguntasAprobado: false,
 	},
 	mutations: {
-		aproboLetras(state) {
+		setLetras(state) {
 			state.letrasAprobado = true
+		}
+		,
+		setNumeros(state) {
+			state.numerosAprobado = true
+		}
+		,
+		setColores(state) {
+			state.coloresAprobado = true
+		},
+		setAprobarVerbos(state) {
+			state.verbosAprobado = true
+		},
+		setAprobarPresentaciones(state) {
+			state.presentacionesAprobado = true
+		},
+		setAprobarPreguntas(state) {
+			state.preguntasAprobado = true
+		},
+		setInicio(state) {
+			state.letrasAprobado = false
+			state.numerosAprobado = false
+			state.coloresAprobado = false
 		}
 		,
 		setCharacters(state, payload) {
@@ -66,8 +91,26 @@ export default createStore({
 
 	},
 	actions: {
-		aproboLetras(context) {
-			context.commit('aproboLetras');
+		reset({ commit }) {
+			commit('setInicio');
+		},
+		aproboLetras({ commit }) {
+			commit('setLetras');
+		},
+		aproboNumeros({ commit }) {
+			commit('setNumeros');
+		},
+		aproboColores({ commit }) {
+			commit('setColores');
+		},
+		aproboVerbos({ commit }) {
+			commit('setAprobarVerbos');
+		},
+		aproboPresentaciones({ commit }) {
+			commit('setAprobarPresentaciones');
+		},
+		aproboPreguntas({ commit }) {
+			commit('setAprobarPreguntas');
 		},
 		async getColores({ commit }) {
 
@@ -217,4 +260,5 @@ export default createStore({
 	},
 	modules: {
 	},
-})
+});
+

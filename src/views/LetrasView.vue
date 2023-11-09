@@ -2,6 +2,7 @@
   <MenuAtrasTop :currentColor="currentColor" :modulo="modulo" ></MenuAtrasTop>
   <main>
     <FilterByName></FilterByName>
+    <!-- {{ arregloLetras.length }} -->
     <div class="letters-c">
       <div v-for="character in characters" :key="character.id">
         <!-- <img :src="character.url_src" alt=""> -->
@@ -51,25 +52,33 @@ import store from "@/store";
 // import TemaComponent from "../components/TemaComponent.vue";
 export let arregloLetras = document.getElementsByClassName('letter-item active');
 let color = String;
-if(arregloLetras.length < 10) {
-  color = 'ff0000';
+setInterval(() => {
   
-} else if(arregloLetras.length >= 10 && arregloLetras.length < 24) {
-  color = 'FFFF00';
-  
-} else if (arregloLetras.length >= 24 || arregloLetras.length == 25){
-  color = '008f39';
-  
-}
+  if(arregloLetras.length >= 0 && arregloLetras.length < 10) {
+     color = 'ff0000';
+  } else if(arregloLetras.length >= 10 && arregloLetras.length < 25) {
+     color = 'FFFF00';
+  } else if (arregloLetras.length >= 25 ){
+     color = '008f39';
+    store.dispatch("aproboLetras");
+  }
+
+}, 1000);
 
 export default {
   name: "LetrasView",
   components: { MenuAtrasTop, MenuView,FilterByName },
   setup() {
+
     const store = useStore();
     const characters = computed(() => {
       return store.state.charactersFilter;
     });
+    if(store.state.letrasAprobado){
+      color = '008f39';
+    } else {
+      color = 'ff0000'
+    }
     
     onMounted(() => {
       store.dispatch("getCharacters");
@@ -78,7 +87,7 @@ export default {
     return {
       characters,
       arregloLetras,
-      color
+      
     };
   },
   data() {
@@ -112,12 +121,13 @@ export default {
       .then(data => console.log(data))
       .catch(error => console.error(error));
 
-      if(this.arregloLetras.length < 10) {
+      if(this.arregloLetras.length >= 0 && this.arregloLetras.length < 10) {
         this.currentColor ='ff0000'
-      } else if(this.arregloLetras.length >= 10 && this.arregloLetras.length <= 25) {
+      } else if(this.arregloLetras.length >= 10 && this.arregloLetras.length < 25) {
         this.currentColor ='FFFF00'
-      } else if (this.arregloLetras.length >= 25 || this.arregloLetras.length == 26){
+      } else if (this.arregloLetras.length >= 25 ){
         this.currentColor ='008f39 ';
+        store.dispatch("setLetras");
       }
 
       document.getElementById('imgshow').src=url_src;
@@ -125,6 +135,7 @@ export default {
     }
   },
 };
+
 
 </script>
 

@@ -40,9 +40,8 @@
 
     
     <!-- <button @click="bloquear">Cambiar Clase</button> -->
-
     <!-- <div class="tema-c" v-bind:class="{locked: isActive}"> -->
-    <div class="tema-c locked" id="nivel-2">
+    <div  :class="unlock ? 'tema-c': 'tema-c locked'"  id="nivel-2">
       <div class="info-c">
         <img src="@/assets/img/info.png" alt="" />
         <div>
@@ -78,10 +77,13 @@
 
 // import {ref} from 'vue'
 import { onMounted, computed } from "vue";
-import { useStore } from "vuex";
-
+import {useStore } from "vuex";
 import { RouterLink } from "vue-router";
 import MenuView from "./MenuView.vue";
+import store from "@/store";
+
+let unlocked = false;
+
 
 function actualizarRegistro() {
     var nuevoValor = 0;
@@ -102,6 +104,11 @@ function actualizarRegistro() {
     // Enviar los datos al servidor
     var data =  nuevoValor;
     xhr.send(data);
+    store.dispatch("getCharacters");
+    store.dispatch("getColores");
+    store.dispatch("getNumbers");
+    store.dispatch('reset');
+    unlocked = false;
 }
 
 export default {
@@ -117,22 +124,29 @@ export default {
     const numbers = computed(() => {
       return store.state.numbersFilter;
     });
+    if(store.state.letrasAprobado == true && store.state.numerosAprobado == true && store.state.coloresAprobado == true) {
+    unlocked = true;
+  }else {
+    unlocked = false;
+  }
      onMounted(() => {
       store.dispatch("getCharacters");
       store.dispatch("getColores");
       store.dispatch("getNumbers");
+          
     });
     return {
        colors,
       characters,
-      numbers
+      numbers,
+      unlocked
     }
   },
   data() {
     return {
       sublevels: 0,
       isActive: true,
-      unlock: false,
+      unlock: this.unlocked,
       miDato: localStorage.getItem('miDato'),
      
     };    
@@ -143,6 +157,7 @@ export default {
   },
   methods: {
     bloquear() {
+      this.unlock = false;
        actualizarRegistro();
       //  document.getElementById("nivel-2").classList.remove("locked");
     }

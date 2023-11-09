@@ -37,7 +37,7 @@
       <img src="" alt="" id="imgshow">
   </main>
 
-  <MenuView :count="count" :modulo="modulo"></MenuView>
+  <MenuView :arregloLetras="arregloLetras.length" :modulo="modulo"></MenuView>
 </template>
 
 <script>
@@ -51,6 +51,20 @@ import store from "@/store";
 
 // import TemaComponent from "../components/TemaComponent.vue";
 
+export let arregloLetras = document.getElementsByClassName('letter-item active');
+let color = String;
+setInterval(() => {
+  
+  if(arregloLetras.length >= 0 && arregloLetras.length < 5) {
+     color = 'ff0000';
+  } else if(arregloLetras.length >= 5 && arregloLetras.length < 8) {
+     color = 'FFFF00';
+  } else if (arregloLetras.length >= 9 ){
+     color = '008f39';
+      store.dispatch("aproboVerbos");
+  }
+
+}, 1000);
 export default {
   name: "VerbosView",
   components: { MenuAtrasTop, MenuView,FilterByVerbo },
@@ -59,19 +73,24 @@ export default {
      const verbos = computed(() => {
       return store.state.verbosFilter;
     });
+    if(store.state.verbosAprobado){
+      color = '008f39';
+    } else {
+      color = 'ff0000'
+    }
    
     onMounted(() => {
       store.dispatch("getVerbos");
     });
     return {
       verbos,
+      arregloLetras
     };
   },
   data() {
 
     return {
-      count: 0,
-      currentColor: 'fff',
+      currentColor: color,
       modulo: 'VERBOS'
 
     }
@@ -97,19 +116,13 @@ export default {
       .then(response => response.json())
       .then(data => console.log(data))
       .catch(error => console.error(error));
-      this.count++;
-   
-      if(this.count >= 9){
-        // alert('completado ')
-        this.currentColor = '00CD56'
-      }
-      if(this.count > 4 && this.count < 8){
-        // alert('mayor a 14 y menor a 20')
-        this.currentColor = 'F4EB49'
-      }
-      if(this.count < 2){
-        // alert('no ha terminado')
-        this.currentColor = 'F1191C'
+        if(this.arregloLetras.length >= 0 && this.arregloLetras.length < 5) {
+        this.currentColor ='ff0000'
+      } else if(this.arregloLetras.length >= 5 && this.arregloLetras.length < 8) {
+        this.currentColor ='FFFF00'
+      } else if (this.arregloLetras.length >= 9 ){
+        this.currentColor ='008f39 ';
+        store.dispatch("aproboVerbos");
       }
       document.getElementById('imgshow').src=url_src;
 

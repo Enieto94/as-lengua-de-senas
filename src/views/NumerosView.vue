@@ -52,18 +52,23 @@ import store from "@/store";
 // import TemaComponent from "../components/TemaComponent.vue";
 
 export let arregloLetras = document.getElementsByClassName('letter-item active');
-console.log('hola '+ arregloLetras.length);
 let color = String;
-if(arregloLetras.length < 5) {
-  color = 'ff0000';
+
+setInterval(() => {
+  if(arregloLetras.length >= 0 && arregloLetras.length < 8) {
+    color = 'ff0000';
+    
+  } else if(arregloLetras.length >= 8 && arregloLetras.length < 19) {
+    color = 'FFFF00';
+    
+  } else if (arregloLetras.length >= 19){
+    color = '008f39';
+    store.dispatch("aproboNumeros");
+    
+  }
   
-} else if(arregloLetras.length >= 8 && arregloLetras.length < 19) {
-  color = 'FFFF00';
-  
-} else if (arregloLetras.length >= 19 || arregloLetras.length == 20){
-  color = '008f39';
-  
-}
+}, 1000);
+
 
 export default {
   name: "NumerosView",
@@ -73,6 +78,11 @@ export default {
     const numbers = computed(() => {
       return store.state.numbersFilter;
     });
+     if(store.state.numerosAprobado){
+      color = '008f39';
+    } else {
+      color = 'ff0000'
+    }
     onMounted(() => {
       store.dispatch("getNumbers");
     });
@@ -112,19 +122,19 @@ export default {
       .then(data => console.log(data))
       .catch(error => console.error(error));
       
-      if(this.arregloLetras.length < 5) {
+      if(this.arregloLetras.length >= 0 && this.arregloLetras.length < 8) {
         this.currentColor ='ff0000'
-      } else if(this.arregloLetras.length >= 8 && this.arregloLetras.length <= 19) {
+      } else if(this.arregloLetras.length >= 8 && this.arregloLetras.length < 19) {
         this.currentColor ='FFFF00'
-      } else if (this.arregloLetras.length >= 19 || this.arregloLetras.length == 20){
+      } else if (this.arregloLetras.length >= 19){
         this.currentColor ='008f39 ';
+        store.dispatch("aproboNumeros");
       }
       document.getElementById('imgshow').src=url_src;
           
     }
   }
 };
-
       
 </script>
 

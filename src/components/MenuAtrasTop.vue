@@ -16,7 +16,7 @@
 <script>
 export default {
   name: "MenuAtrasTop",
-  props: ['currentColor','modulo'],
+  props: ['currentColor','modulo','arregloLetras'],
 
 };
 </script>

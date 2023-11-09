@@ -11,6 +11,7 @@
 <script>
 import { ref , watchEffect} from 'vue';
 let localStorageData = ref(localStorage.getItem('miDato'));
+
 function guardarEnLocalStorage() {
   localStorage.setItem('miDato', localStorageData.value);
 }
@@ -28,6 +29,8 @@ function actualizarRegistro() {
     xhr.onload = function () {
         if (xhr.status === 200) {
             console.log('hecho')
+            localStorage.value = '';
+
         }
     };
 

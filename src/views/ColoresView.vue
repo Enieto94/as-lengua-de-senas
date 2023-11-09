@@ -50,19 +50,25 @@ import FilterByColor from "../components/FilterByColor.vue";
 import store from "@/store";
 
 // import TemaComponent from "../components/TemaComponent.vue";
-export let arregloLetras = document.getElementsByClassName('letter-item active');
-console.log('hola '+ arregloLetras.length);
+ export let arregloLetras = document.getElementsByClassName('letter-item active');
 let color = String;
-if(arregloLetras.length < 3) {
-  color = 'ff0000';
+
+setInterval(() => {
   
-} else if(arregloLetras.length >= 5 && arregloLetras.length < 10) {
-  color = 'FFFF00';
-  
-} else if (arregloLetras.length >= 10 || arregloLetras.length == 11){
-  color = '008f39';
-  
-}
+  if(arregloLetras.length >= 0 && arregloLetras.length < 5) {
+    color = 'ff0000';
+
+  } else if(arregloLetras.length >= 5 && arregloLetras.length < 11) {
+    color = 'FFFF00';
+    
+  } else if (arregloLetras.length >= 11){
+    color = '008f39';
+    store.dispatch("aproboColores");
+    
+  }
+}, 1000);
+
+
 export default {
   name: "ColoresView",
   components: { MenuAtrasTop, MenuView,FilterByColor },
@@ -71,6 +77,12 @@ export default {
     const colors = computed(() => {
       return store.state.colorsFilter;
     });
+    if(store.state.coloresAprobado){
+      color = '008f39';
+    } else {
+      color = 'ff0000'
+    }
+
     onMounted(() => {
       store.dispatch("getColores");
     });
@@ -109,12 +121,13 @@ export default {
       .then(data => console.log(data))
       .catch(error => console.error(error));
       
-      if(this.arregloLetras.length < 3) {
+      if(this.arregloLetras.length >= 0 && this.arregloLetras.length < 5) {
         this.currentColor ='ff0000'
-      } else if(this.arregloLetras.length >= 5 && this.arregloLetras.length <= 10) {
+      } else if(this.arregloLetras.length >= 5 && this.arregloLetras.length < 11) {
         this.currentColor ='FFFF00'
-      } else if (this.arregloLetras.length >= 10 || this.arregloLetras.length == 11){
+      } else if (this.arregloLetras.length >= 11){
         this.currentColor ='008f39 ';
+        store.dispatch("aproboColores");
       }
 
       document.getElementById('imgshow').src=url_src;

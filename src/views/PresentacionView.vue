@@ -37,7 +37,7 @@
       <img src="" alt="" id="imgshow">
   </main>
 
-  <MenuView :count="count" :modulo="modulo"></MenuView>
+  <MenuView :arregloLetras="arregloLetras.length" :modulo="modulo"></MenuView>
 </template>
 
 <script>
@@ -51,6 +51,21 @@ import store from "@/store";
 
 // import TemaComponent from "../components/TemaComponent.vue";
 
+export let arregloLetras = document.getElementsByClassName('letter-item active');
+let color = String;
+setInterval(() => {
+  
+  if(arregloLetras.length >= 0 && arregloLetras.length < 2) {
+     color = 'ff0000';
+  } else if(arregloLetras.length >= 2 && arregloLetras.length < 3) {
+     color = 'FFFF00';
+  } else if (arregloLetras.length >= 4 ){
+     color = '008f39';
+      store.dispatch("setPresentaciones");
+  }
+
+}, 1000);
+
 export default {
   name: "PresentacionView",
   components: { MenuAtrasTop, MenuView,FilterByPresentacion },
@@ -59,19 +74,24 @@ export default {
      const presentaciones = computed(() => {
       return store.state.presentacionesFilter;
     });
+     if(store.state.presentacionesAprobado){
+      color = '008f39';
+    } else {
+      color = 'ff0000'
+    }
    
     onMounted(() => {
       store.dispatch("getPresentaciones");
     });
     return {
       presentaciones,
+      arregloLetras
     };
   },
   data() {
 
     return {
-      count: 0,
-      currentColor: 'fff',
+      currentColor: color,
       modulo: 'PRESENTACIONES'
 
     }
@@ -98,19 +118,13 @@ export default {
       .then(data => console.log(data))
       .catch(error => console.error(error));
       
-      this.count++;
-   
-      if(this.count >= 5){
-        // alert('completado ')
-        this.currentColor = '00CD56'
-      }
-      if(this.count > 2 && this.count < 4){
-        // alert('mayor a 14 y menor a 20')
-        this.currentColor = 'F4EB49'
-      }
-      if(this.count < 1){
-        // alert('no ha terminado')
-        this.currentColor = 'F1191C'
+      if(this.arregloLetras.length >= 0 && this.arregloLetras.length < 2) {
+        this.currentColor ='ff0000'
+      } else if(this.arregloLetras.length >= 2 && this.arregloLetras.length < 3) {
+        this.currentColor ='FFFF00'
+      } else if (this.arregloLetras.length >= 4 ){
+        this.currentColor ='008f39 ';
+        store.dispatch("setPresentacion");
       }
       document.getElementById('imgshow').src=url_src;
 
